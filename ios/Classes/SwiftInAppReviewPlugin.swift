@@ -10,6 +10,26 @@ public class SwiftInAppReviewPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    
+    switch (call.method) {
+        case "requestReview":
+          //App Store Review
+          if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+            result(true)
+          } else {
+            result(FlutterError(code: "unavailable", message: "In-App Review unavailable", details: nil))
+          }
+        case "isAvailable":
+          if #available(iOS 10.3, *) {
+            result(true)
+          } else {
+            result(false)
+          }
+        default:
+          result(FlutterMethodNotImplemented)
+    }
   }
+    
+    
 }

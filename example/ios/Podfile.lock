@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - in_app_review (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  in_app_review:
+    :path: ".symlinks/plugins/in_app_review/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  in_app_review: d8a0f9fb6c77e48af4dd36551fc49a9d25d9091b
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.9.3
