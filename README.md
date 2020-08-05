@@ -1,15 +1,25 @@
 # in_app_review
 
-A new flutter plugin project.
+![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/android.jpg)
+![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/ios.png)
 
-## Getting Started
+# Description
+Flutter plugin that lets you show a system review pop up where users can leave a review for your app without needing to leave it.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on IOS
 
+
+# Usage
+
+```dart
+final InAppReview inAppReview = InAppReview.instance;
+
+if (await inAppReview.isAvailable()) {
+    inAppReview.requestReview();
+} else {
+    inAppReview.openStoreListing(iOSAppStoreId: '<YOUR_APP_STORE_ID>')
+}
+```
+
+Issues & pull requests are more than welcome!
