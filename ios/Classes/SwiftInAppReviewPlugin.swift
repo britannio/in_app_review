@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import StoreKit
 
 public class SwiftInAppReviewPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {

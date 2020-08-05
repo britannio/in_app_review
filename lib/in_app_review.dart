@@ -10,7 +10,7 @@ class InAppReview {
   static const MethodChannel _channel =
       const MethodChannel('dev.britannio.in_app_review');
 
-  Future<bool> isAvailable() async {}
+  Future<bool> isAvailable() => _channel.invokeMethod('isAvailable');
 
-  Future<void> requestReview() {}
+  Future<void> requestReview() => _channel.invokeMethod('requestReview');
 }
