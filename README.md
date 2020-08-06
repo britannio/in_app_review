@@ -1,5 +1,7 @@
 # in_app_review
 
+[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review)
+
 ![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/android.jpg)
 ![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/ios.png)
 
