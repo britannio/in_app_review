@@ -1,8 +1,7 @@
 name: in_app_review
 description: Show the In-App Review popup on Android & IOS
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/britannio/in_app_review
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
