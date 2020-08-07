@@ -1,3 +1,7 @@
+## 0.2.0 Breaking Change
+- Add MacOS support
+- Rename `openStoreListing(iOSAppStoreId: '')` to `openStoreListing(appStoreId: '')` 
+
 ## 0.1.0
 - Improve docs
 - Set Android minSdkVersion to 16
