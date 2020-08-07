@@ -1,3 +1,6 @@
+## 0.2.0+1
+- Update MacOS testing instructions
+
 ## 0.2.0 Breaking Change
 - Add MacOS support
 - Rename `openStoreListing(iOSAppStoreId: '')` to `openStoreListing(appStoreId: '')` 
