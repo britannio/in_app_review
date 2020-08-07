@@ -33,6 +33,8 @@ flutter:
         package: dev.britannio.in_app_review
         pluginClass: InAppReviewPlugin
       ios:
+        pluginClass: SwiftInAppReviewPlugin
+      macos:
         pluginClass: InAppReviewPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
