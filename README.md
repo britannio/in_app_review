@@ -36,7 +36,7 @@ Since there is a quota on how many times the pop up can be shown, you should **n
 ## IOS
 Requires IOS version 10.3.
 ## Android
-Requires Android Lollipop(API 21) or higher and the Google Play Store must be installed.
+Requires Android 5 Lollipop(API 21) or higher and the Google Play Store must be installed.
 
 # Testing
 ## IOS

@@ -58,7 +58,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
     final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
     if (!(playStoreInstalled && lollipopOrLater)) {
-      // The play store isn't installed or the device isn't running Android Lollipop(API 21) or
+      // The play store isn't installed or the device isn't running Android 5 Lollipop(API 21) or
       // higher
       result.success(false);
     } else {

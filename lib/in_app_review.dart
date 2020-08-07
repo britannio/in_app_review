@@ -16,7 +16,7 @@ class InAppReview {
   /// Check's if the device is able to show a review dialog.
   ///
   /// On Android the Google Play Store must be installed and the device must be
-  /// running Android Lollipop(API 21) or higher.
+  /// running Android 5 Lollipop(API 21) or higher.
   ///
   /// IOS devices must be running IOS version 10.3 or higher.
   Future<bool> isAvailable() => _channel.invokeMethod('isAvailable');
