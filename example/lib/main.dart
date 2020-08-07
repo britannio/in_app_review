@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _openStoreListing() =>
-      _inAppReview.openStoreListing(iOSAppStoreId: _appStoreId);
+      _inAppReview.openStoreListing(appStoreId: _appStoreId);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             TextField(
               onChanged: _setAppStoreId,
-              decoration: InputDecoration(hintText: 'IOS App Store ID'),
+              decoration: InputDecoration(hintText: 'App Store ID'),
             ),
             RaisedButton(
               onPressed: _requestReview,

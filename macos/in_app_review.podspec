@@ -5,9 +5,9 @@
 Pod::Spec.new do |s|
   s.name             = 'in_app_review'
   s.version          = '0.2.0'
-  s.summary          = 'Flutter plugin for showing the In-App Review/System Rating pop up'
+  s.summary          = 'Flutter plugin for showing the In-App Review/System Rating pop up.'
   s.description      = <<-DESC
-A new flutter plugin project.
+  Flutter plugin for showing the In-App Review/System Rating pop up.
                        DESC
   s.homepage         = 'https://github.com/britannio/in_app_review'
   s.license          = { :file => '../LICENSE' }
