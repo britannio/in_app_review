@@ -12,7 +12,7 @@ Uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-rev
 
 
 # Usage
-
+Use the following code to attempt to display the system review pop up. Beware that this does **not** guarantee that the pop up will be displayed as the quota may have been exceeded. On IOS & MacOS, this quota is three times in a 365 day period. On Android it is unclear: https://developer.android.com/guide/playcore/in-app-review#quotas
 ```dart
 import 'package:in_app_review/in_app_review.dart';
 
@@ -20,9 +20,16 @@ final InAppReview inAppReview = InAppReview.instance;
 
 if (await inAppReview.isAvailable()) {
     inAppReview.requestReview();
-} else {
-    inAppReview.openStoreListing(appStoreId: '<YOUR_APP_STORE_ID>')
 }
+```
+
+Use the following code to open the Google Play Store on Android or the App Store on IOS & MacOS. This is the recommended option if you want to permanently provide a button or other call-to-action to let users leave a review.
+```dart
+import 'package:in_app_review/in_app_review.dart';
+
+final InAppReview inAppReview = InAppReview.instance;
+
+inAppReview.openStoreListing(appStoreId: '<YOUR_APP_STORE_ID>');
 ```
 
 # Guidelines
@@ -45,14 +52,13 @@ Requires MacOS version 10.14
 # Testing
 ## Android
 You must upload your app to the Play Store to test `requestReview`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
+
+More details at https://developer.android.com/guide/playcore/in-app-review/test
+
 ## IOS
 This plugin can be tested via the IOS simulator or on a physical device.
 ## MacOS
 This plugin can be tested by running your MacOS application locally.
-
-
-More details at https://developer.android.com/guide/playcore/in-app-review/test
-
 
 
 Issues & pull requests are more than welcome!
