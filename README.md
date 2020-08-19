@@ -32,6 +32,8 @@ final InAppReview inAppReview = InAppReview.instance;
 inAppReview.openStoreListing(appStoreId: '<YOUR_APP_STORE_ID>');
 ```
 
+`appStoreId` is only required on IOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID
+
 # Guidelines
 https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/ratings-and-reviews/
 
