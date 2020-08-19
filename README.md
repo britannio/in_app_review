@@ -1,6 +1,6 @@
 # in_app_review
 
-[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review)
+[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) [![pub points](https://badges.bar/in_app_review/pub%20points)](https://pub.dev/packages/in_app_review/score) [![likes](https://badges.bar/in_app_review/likes)](https://pub.dev/packages/in_app_review/score) [![popularity](https://badges.bar/in_app_review/popularity)](https://pub.dev/packages/in_app_review/score)
 
 ![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/android.jpg)
 ![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/screenshots/ios.png)
