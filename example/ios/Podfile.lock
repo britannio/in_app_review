@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - in_app_review (0.0.1):
+  - in_app_review (0.2.0):
     - Flutter
   - package_info (0.0.1):
     - Flutter
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  in_app_review: d8a0f9fb6c77e48af4dd36551fc49a9d25d9091b
+  in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
