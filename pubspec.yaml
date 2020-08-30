@@ -11,8 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  url_launcher: ^5.5.0
-  package_info: ^0.4.1
+  url_launcher: ^5.5.1
+  package_info: ^0.4.3
   
 dev_dependencies:
   flutter_test:
