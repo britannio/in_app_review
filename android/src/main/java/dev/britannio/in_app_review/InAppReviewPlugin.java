@@ -12,7 +12,6 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 import com.google.android.play.core.tasks.OnCompleteListener;
-import com.google.android.play.core.tasks.OnFailureListener;
 import com.google.android.play.core.tasks.Task;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -40,7 +39,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "dev.britannio.in_app_review");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "dev.britannio.in_app_review");
     channel.setMethodCallHandler(this);
     context = flutterPluginBinding.getApplicationContext();
   }
