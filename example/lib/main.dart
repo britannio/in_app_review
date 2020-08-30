@@ -35,11 +35,7 @@ class _MyAppState extends State<MyApp> {
 
   void _setAppStoreId(String id) => _appStoreId = id;
 
-  Future<void> _requestReview() async {
-    if (await _inAppReview.isAvailable()) {
-      _inAppReview.requestReview();
-    }
-  }
+  Future<void> _requestReview() => _inAppReview.requestReview();
 
   Future<void> _openStoreListing() =>
       _inAppReview.openStoreListing(appStoreId: _appStoreId);

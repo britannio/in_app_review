@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -35,6 +36,8 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
   private ReviewInfo reviewInfo;
 
+  private String TAG = "InAppReviewPlugin";
+
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "dev.britannio.in_app_review");
@@ -54,22 +57,29 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
   }
 
   private void isAvailable(final Result result) {
+    Log.i(TAG, "isAvailable: called");
     final boolean playStoreInstalled = isPlayStoreInstalled();
     final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+
+    Log.i(TAG, "isAvailable: playStoreInstalled: " + playStoreInstalled);
+    Log.i(TAG, "isAvailable:lollipopOrLater: " + lollipopOrLater);
 
     if (!(playStoreInstalled && lollipopOrLater)) {
       // The play store isn't installed or the device isn't running Android 5 Lollipop(API 21) or
       // higher
+      Log.w(TAG, "isAvailable: The Play Store must be installed and Android 5 or later must be used");
       result.success(false);
     } else {
       // The API is likely available but we can ensure that it is by getting a ReviewInfo object
       // from the API. This will also speed up the review flow when we're ready to launch it as
       // the ReviewInfo doesn't need to be fetched.
+      Log.i(TAG, "isAvailable: The Play Store is available and Android 5 or later is being used");
       cacheReviewInfo(result);
     }
   }
 
   private void cacheReviewInfo(final Result result) {
+    Log.i(TAG, "cacheReviewInfo: called");
     if (context == null) {
       result.error("error", "Android context not available", null);
       return;
@@ -78,15 +88,18 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     final Task<ReviewInfo> request = manager.requestReviewFlow();
 
+    Log.i(TAG, "cacheReviewInfo: Requesting review flow");
     request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
       @Override
       public void onComplete(@NonNull Task<ReviewInfo> task) {
         if (task.isSuccessful()) {
           // We can get the ReviewInfo object
+          Log.i(TAG, "onComplete: Successfully requested review flow");
           reviewInfo =  task.getResult();
           result.success(true);
         } else {
           // The API isn't available
+          Log.i(TAG, "onComplete: Unsuccessfully requested review flow");
           result.success(false);
         }
       }
@@ -94,6 +107,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
   }
 
   private void requestReview(final Result result) {
+    Log.i(TAG, "requestReview: called");
     if (context == null) {
       result.error("error", "Android context not available", null);
       return;
@@ -112,14 +126,17 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     final Task<ReviewInfo> request = manager.requestReviewFlow();
 
+    Log.i(TAG, "requestReview: Requesting review flow");
     request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
       @Override
       public void onComplete(@NonNull Task<ReviewInfo> task) {
         if (task.isSuccessful()) {
           // We can get the ReviewInfo object
+          Log.i(TAG, "onComplete: Successfully requested review flow");
           ReviewInfo reviewInfo = task.getResult();
           launchReviewFlow(result, manager, reviewInfo);
         } else {
+          Log.i(TAG, "onComplete: Unsuccessfully requested review flow");
           result.error("error","In-App Review API unavailable", null);
         }
       }
@@ -127,6 +144,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
   }
 
   private void launchReviewFlow(final Result result, ReviewManager manager, ReviewInfo reviewInfo) {
+    Log.i(TAG, "launchReviewFlow: called");
     Task<Void> flow = manager.launchReviewFlow(activity, reviewInfo);
     flow.addOnCompleteListener(new OnCompleteListener<Void>() {
       @Override
