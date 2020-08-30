@@ -1,3 +1,8 @@
+# [0.2.0+4]
+
+- Remove deprecated API warning.
+- Update dependencies.
+
 # [0.2.0+3]
 
 - Instructions in the README have been improved along with the example.
