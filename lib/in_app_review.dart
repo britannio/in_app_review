@@ -45,6 +45,8 @@ class InAppReview {
   }) async {
     final bool isIOS = Platform.isIOS;
     final bool isMacOS = Platform.isMacOS;
+    final bool isAndroid = Platform.isAndroid;
+
     if (isIOS || isMacOS) {
       assert(appStoreId != null);
 
@@ -55,13 +57,15 @@ class InAppReview {
         queryParameters: {'action': 'write-review'},
       );
 
-      _launchUrl(uri.toString());
-    } else if (Platform.isAndroid) {
+      await _launchUrl(uri.toString());
+    } else if (isAndroid) {
       final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
       final String packageName = packageInfo.packageName;
 
-      _launchUrl('https://play.google.com/store/apps/details?id=$packageName');
+      await _launchUrl(
+        'https://play.google.com/store/apps/details?id=$packageName',
+      );
     } else {
       throw UnsupportedError('Platform not supported');
     }
