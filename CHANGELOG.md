@@ -1,3 +1,9 @@
+# [0.2.1]
+
+- Update dependencies.
+- Android Play Core Library V1.8.2 release notes:
+    - Fixed UI flickering in the In-App Review API
+
 # [0.2.0+4]
 
 - Remove deprecated API warning.
