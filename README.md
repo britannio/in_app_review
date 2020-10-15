@@ -40,7 +40,7 @@ https://developer.apple.com/design/human-interface-guidelines/ios/system-capabil
 https://developer.android.com/guide/playcore/in-app-review#when-to-request
 https://developer.android.com/guide/playcore/in-app-review#design-guidelines
 
-Since there is a quota on how many times the pop up can be shown, you should **not** trigger `requestReview` via a button or other *call-to-action* option. Instead, you can reliably redirect users to your store listing via `openStoreListing`.
+Since there is a quota on how many times the pop up can be shown, you should **not** trigger `requestReview()` via a button or other *call-to-action* option. Instead, you can reliably redirect users to your store listing via `openStoreListing()`.
 
 
 # Requirements
@@ -53,12 +53,14 @@ Requires MacOS version 10.14
 
 # Testing
 ## Android
-You must upload your app to the Play Store to test `requestReview`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
+You must upload your app to the Play Store to test `requestReview()`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
 
 More details at https://developer.android.com/guide/playcore/in-app-review/test
 
 ## IOS
-This plugin can be tested via the IOS simulator or on a physical device.
+This plugin can be tested via the IOS simulator or on a physical device. 
+Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
+
 ## MacOS
 This plugin can be tested by running your MacOS application locally.
 
