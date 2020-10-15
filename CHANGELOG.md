@@ -1,3 +1,7 @@
+# [0.2.1+1]
+
+- Improve IOS testing docs.
+
 # [0.2.1]
 
 - Update dependencies.
