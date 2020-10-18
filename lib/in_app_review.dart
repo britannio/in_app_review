@@ -40,12 +40,16 @@ class InAppReview {
   /// Opens the Play Store on Android and opens the App Store with a review
   /// screen on IOS & MacOS. [appStoreId] is required for IOS & MacOS.
   Future<void> openStoreListing({
-    /// Required for IOS & MacOS
+    /// Required for IOS & MacOS.
     String appStoreId,
+
+    /// Required for Windows.
+    String windowsProductId,
   }) async {
     final bool isIOS = Platform.isIOS;
     final bool isMacOS = Platform.isMacOS;
     final bool isAndroid = Platform.isAndroid;
+    final bool isWindows = Platform.isWindows;
 
     if (isIOS || isMacOS) {
       assert(appStoreId != null);
@@ -65,6 +69,12 @@ class InAppReview {
 
       await _launchUrl(
         'https://play.google.com/store/apps/details?id=$packageName',
+      );
+    } else if (isWindows) {
+      assert(windowsProductId != null);
+
+      await _launchUrl(
+        'ms-windows-store://review/?ProductId=$windowsProductId',
       );
     } else {
       throw UnsupportedError('Platform not supported');

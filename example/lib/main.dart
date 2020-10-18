@@ -12,6 +12,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final InAppReview _inAppReview = InAppReview.instance;
   String _appStoreId = '';
+  String _windowsProductId = '';
   bool _isAvailable;
 
   @override
@@ -35,10 +36,14 @@ class _MyAppState extends State<MyApp> {
 
   void _setAppStoreId(String id) => _appStoreId = id;
 
+  void _setWindowsProductId(String id) => _windowsProductId = id;
+
   Future<void> _requestReview() => _inAppReview.requestReview();
 
-  Future<void> _openStoreListing() =>
-      _inAppReview.openStoreListing(appStoreId: _appStoreId);
+  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
+        appStoreId: _appStoreId,
+        windowsProductId: _windowsProductId,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +63,10 @@ class _MyAppState extends State<MyApp> {
             TextField(
               onChanged: _setAppStoreId,
               decoration: InputDecoration(hintText: 'App Store ID'),
+            ),
+            TextField(
+              onChanged: _setWindowsProductId,
+              decoration: InputDecoration(hintText: 'Windows Product ID'),
             ),
             RaisedButton(
               onPressed: _requestReview,
