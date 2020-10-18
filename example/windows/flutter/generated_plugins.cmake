@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  in_app_review
   url_launcher_windows
 )
 

@@ -36,6 +36,9 @@ flutter:
         pluginClass: SwiftInAppReviewPlugin
       macos:
         pluginClass: InAppReviewPlugin
+      windows:
+        pluginClass: InAppReviewPlugin
+
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (Platform.isIOS || Platform.isMacOS) {
+      if (Platform.isIOS || Platform.isMacOS || Platform.isWindows) {
         _inAppReview.isAvailable().then((bool isAvailable) {
           setState(() {
             _isAvailable = isAvailable;
