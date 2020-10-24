@@ -52,8 +52,11 @@ abstract class InAppReviewPlatform extends PlatformInterface {
     throw UnimplementedError('requestReview() has not been implemented.');
   }
 
-  /// Opens the Play Store on Android and opens the App Store with a review
-  /// screen on IOS & MacOS. [appStoreId] is required for IOS & MacOS.
+  /// Opens the Play Store on Android, the App Store with a review
+  /// screen on IOS & MacOS and the Microsoft Store on Windows.
+  ///
+  /// [appStoreId] is required for IOS & MacOS.
+  /// [windowsProductId] is required for Windows.
   Future<void> openStoreListing({
     /// Required for IOS & MacOS.
     String appStoreId,
