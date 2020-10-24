@@ -20,11 +20,12 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   @override
   Future<void> openStoreListing({
     String appStoreId,
-    String windowsProductId,
+    String windowsStoreId,
   }) async {
     final bool isIOS = Platform.isIOS;
     final bool isMacOS = Platform.isMacOS;
     final bool isAndroid = Platform.isAndroid;
+    final bool isWindows = Platform.isWindows;
 
     if (isIOS || isMacOS) {
       assert(appStoreId != null);
@@ -44,6 +45,12 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
 
       await _launchUrl(
         'https://play.google.com/store/apps/details?id=$packageName',
+      );
+    } else if (isWindows) {
+      assert(windowsStoreId != null);
+
+      await _launchUrl(
+        'ms-windows-store://review/?ProductId=$windowsStoreId',
       );
     } else {
       throw UnsupportedError('Platform not supported');

@@ -1,3 +1,8 @@
+# [1.0.0]
+
+- Migrate to use `in_app_review_platform_interface`.
+- Add Windows support for `openStoreListing`.
+
 # [0.2.1+1]
 
 - Improve IOS testing docs.
