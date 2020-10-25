@@ -58,11 +58,19 @@ You must upload your app to the Play Store to test `requestReview()`. An easy wa
 More details at https://developer.android.com/guide/playcore/in-app-review/test
 
 ## IOS
-This plugin can be tested via the IOS simulator or on a physical device. 
+`requestReview()` can be tested via the IOS simulator or on a physical device. 
 Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
+
+`openStoreListing()` can only be tested with a physical device as the IOS simulator does not have the App Store Installed.
 
 ## MacOS
 This plugin can be tested by running your MacOS application locally.
+
+# Cross Platform Compatibility
+| Function             | Android | IOS | MacOS | Windows(UWP) |
+|----------------------|---------|-----|-------|--------------|
+| `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
+| `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
 
 
 Issues & pull requests are more than welcome!

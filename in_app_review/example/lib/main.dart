@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'dart:io';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final InAppReview _inAppReview = InAppReview.instance;
   String _appStoreId = '';
+  String _microsoftStoreId = '';
   bool _isAvailable;
 
   @override
@@ -19,26 +21,27 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (Platform.isIOS || Platform.isMacOS) {
-        _inAppReview.isAvailable().then((bool isAvailable) {
-          setState(() {
-            _isAvailable = isAvailable;
-          });
-        });
-      } else {
-        setState(() {
-          _isAvailable = false;
-        });
-      }
+      _inAppReview
+          .isAvailable()
+          .then(
+            (bool isAvailable) => setState(
+              () => _isAvailable = isAvailable && !Platform.isAndroid,
+            ),
+          )
+          .catchError(() => setState(() => _isAvailable = false));
     });
   }
 
   void _setAppStoreId(String id) => _appStoreId = id;
 
+  void _setMicrosoftStoreId(String id) => _microsoftStoreId = id;
+
   Future<void> _requestReview() => _inAppReview.requestReview();
 
-  Future<void> _openStoreListing() =>
-      _inAppReview.openStoreListing(appStoreId: _appStoreId);
+  Future<void> _openStoreListing() => _inAppReview.openStoreListing(
+        appStoreId: _appStoreId,
+        microsoftStoreId: _microsoftStoreId,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,10 @@ class _MyAppState extends State<MyApp> {
             TextField(
               onChanged: _setAppStoreId,
               decoration: InputDecoration(hintText: 'App Store ID'),
+            ),
+            TextField(
+              onChanged: _setMicrosoftStoreId,
+              decoration: InputDecoration(hintText: 'Microsoft Store ID'),
             ),
             RaisedButton(
               onPressed: _requestReview,
