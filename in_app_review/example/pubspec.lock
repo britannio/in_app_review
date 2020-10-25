@@ -78,7 +78,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.1"
+    version: "1.0.1+1"
   in_app_review_platform_interface:
     dependency: transitive
     description:
