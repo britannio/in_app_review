@@ -62,8 +62,10 @@ This plugin can be tested by running your MacOS application locally.
 # Cross Platform Compatibility
 | Function             | Android | IOS | MacOS | Windows(UWP) |
 |----------------------|---------|-----|-------|--------------|
+| `isAvailable()`      | ✅       | ✅   | ✅     | ❌            |
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
 | `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
+Upvote https://github.com/flutter/flutter/issues/64958 if you're interested in Windows support!
 
 # Requirements
 ## Android
