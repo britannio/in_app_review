@@ -80,11 +80,11 @@ packages:
     source: path
     version: "1.0.1+1"
   in_app_review_platform_interface:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: in_app_review_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../../in_app_review_platform_interface"
+      relative: true
+    source: path
     version: "1.0.2"
   matcher:
     dependency: transitive

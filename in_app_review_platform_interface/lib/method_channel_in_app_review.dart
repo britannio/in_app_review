@@ -1,16 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info/package_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'in_app_review_platform_interface.dart';
 
-const MethodChannel _channel = MethodChannel('dev.britannio.in_app_review');
-
 /// An implementation of [UrlLauncherPlatform] that uses method channels.
 class MethodChannelInAppReview extends InAppReviewPlatform {
+  MethodChannel _channel = MethodChannel('dev.britannio.in_app_review');
+
+  @visibleForTesting
+  set channel(MethodChannel channel) => _channel = channel;
+
   @override
   Future<bool> isAvailable() => _channel.invokeMethod('isAvailable');
 
@@ -59,7 +63,11 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+      );
     }
   }
 }
