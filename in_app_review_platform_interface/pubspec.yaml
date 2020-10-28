@@ -1,9 +1,9 @@
 name: in_app_review_platform_interface
-description: Flutter plugin for showing the In-App Review/System Rating pop up on Android, IOS and MacOS. Makes it easy for users to rate your app.
+description: A common platform interface for the in_app_review plugin.
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
-version: 1.0.2
-homepage: https://github.com/britannio/in_app_review
+version: 1.0.3
+homepage: https://github.com/britannio/in_app_review/tree/master/in_app_review_platform_interface
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

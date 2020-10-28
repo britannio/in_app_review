@@ -1,3 +1,8 @@
+# [1.0.3]
+
+- Open the App Store directly instead of via the Safari View Controller.
+- Add automated tests.
+
 # [1.0.2]
 
 - Rename `openStoreListing(windowsStoreId: '')` to `openStoreListing(microsoftStoreId: '')`.
