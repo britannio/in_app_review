@@ -23,16 +23,18 @@ if (await inAppReview.isAvailable()) {
 }
 ```
 
-Use the following code to open the Google Play Store on Android or the App Store on IOS & MacOS. This is the recommended option if you want to permanently provide a button or other call-to-action to let users leave a review.
+Use the following code to open the Google Play Store on Android, the App Store on IOS & MacOS or the Microsoft Store on Windows. This is the recommended option if you want to permanently provide a button or other call-to-action to let users leave a review.
 ```dart
 import 'package:in_app_review/in_app_review.dart';
 
 final InAppReview inAppReview = InAppReview.instance;
 
-inAppReview.openStoreListing(appStoreId: '<YOUR_APP_STORE_ID>');
+inAppReview.openStoreListing(appStoreId: '...', microsoftStoreId: '...');
 ```
 
-`appStoreId` is only required on IOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID
+`appStoreId` is only required on IOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID.
+
+`microsoftStoreId` is only required on Windows.
 
 # Guidelines
 https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/ratings-and-reviews/
@@ -41,15 +43,6 @@ https://developer.android.com/guide/playcore/in-app-review#when-to-request
 https://developer.android.com/guide/playcore/in-app-review#design-guidelines
 
 Since there is a quota on how many times the pop up can be shown, you should **not** trigger `requestReview()` via a button or other *call-to-action* option. Instead, you can reliably redirect users to your store listing via `openStoreListing()`.
-
-
-# Requirements
-## Android
-Requires Android 5 Lollipop(API 21) or higher and the Google Play Store must be installed.
-## IOS
-Requires IOS version 10.3
-## MacOS
-Requires MacOS version 10.14
 
 # Testing
 ## Android
@@ -61,7 +54,7 @@ More details at https://developer.android.com/guide/playcore/in-app-review/test
 `requestReview()` can be tested via the IOS simulator or on a physical device. 
 Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
 
-`openStoreListing()` can only be tested with a physical device as the IOS simulator does not have the App Store Installed.
+`openStoreListing()` can only be tested with a physical device as the IOS simulator does not have the App Store installed.
 
 ## MacOS
 This plugin can be tested by running your MacOS application locally.
@@ -72,5 +65,12 @@ This plugin can be tested by running your MacOS application locally.
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
 | `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
 
+# Requirements
+## Android
+Requires Android 5 Lollipop(API 21) or higher and the Google Play Store must be installed.
+## IOS
+Requires IOS version 10.3
+## MacOS
+Requires MacOS version 10.14
 
 Issues & pull requests are more than welcome!

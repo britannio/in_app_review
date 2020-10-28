@@ -1,6 +1,13 @@
+# [1.0.2]
+
+- Update in_app_review_platform_interface to 1.0.3
+- Open the App Store directly instead of via the Safari View Controller.
+- Add automated tests.
+- Improve docs.
+
 # [1.0.1+1]
 
-- Update in_app_review_platform_interface
+- Update in_app_review_platform_interface to 1.0.2
 
 # [1.0.0]
 

@@ -24,7 +24,7 @@ abstract class InAppReviewPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  /// Check's if the device is able to show a review dialog.
+  /// Checks if the device is able to show a review dialog.
   ///
   /// On Android the Google Play Store must be installed and the device must be
   /// running **Android 5 Lollipop(API 21)** or higher.
