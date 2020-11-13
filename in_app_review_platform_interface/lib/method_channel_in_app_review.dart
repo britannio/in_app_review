@@ -63,11 +63,7 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
 
   Future<void> _launchUrl(String url) async {
     if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-      );
+      await launch(url, forceSafariVC: false, forceWebView: false);
     }
   }
 }

@@ -65,6 +65,7 @@ This plugin can be tested by running your MacOS application locally.
 | `isAvailable()`      | ✅       | ✅   | ✅     | ❌            |
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
 | `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
+
 Upvote https://github.com/flutter/flutter/issues/64958 if you're interested in Windows support!
 
 # Requirements
