@@ -1,3 +1,7 @@
+# [1.0.4]
+
+- Lower dependency version constraints
+
 # [1.0.3]
 
 - Open the App Store directly instead of via the Safari View Controller.
