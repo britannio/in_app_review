@@ -1,3 +1,9 @@
+# [1.0.3]
+
+- Update in_app_review_platform_interface to 1.0.4
+- Update android compileSdkVersion to 29.
+- Lower dependency version constraints.
+
 # [1.0.2]
 
 - Update in_app_review_platform_interface to 1.0.3
