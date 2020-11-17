@@ -12,12 +12,9 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - name: Install Flutter
-        run: |
-          git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION _flutter
-          echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
-      - name: Verify Flutter Installation Succeeded
-        run: flutter doctor -v
+      - uses: britannio/action-install-flutter@v0.4
+        with:
+          version: $FLUTTER_VERSION
       - name: Get dependencies
         run: flutter pub get
         working-directory: ./in_app_review
@@ -34,12 +31,9 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - name: Install Flutter
-        run: |
-          git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION _flutter
-          echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
-      - name: Verify Flutter Installation Succeeded
-        run: flutter doctor -v
+      - uses: britannio/action-install-flutter@v0.4
+        with:
+          version: $FLUTTER_VERSION
       - name: Get dependencies
         run: flutter pub get
         working-directory: ./in_app_review_platform_interface
