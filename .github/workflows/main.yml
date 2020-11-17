@@ -1,4 +1,6 @@
-name: in_app_review tests
+name: tests
+env:
+  FLUTTER_VERSION: "stable"
 on:
   - push
   - pull_request
@@ -10,13 +12,21 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: cd in_app_review/
-      - run: flutter pub get
-      - run: flutter analyze --no-pub
-      - run: flutter test --no-pub
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION _flutter
+          echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
+      - name: Verify Flutter Installation Succeeded
+        run: flutter doctor -v
+      - name: Get dependencies
+        run: flutter pub get
+        working-directory: ./in_app_review
+      - name: Static Analysis
+        run: flutter analyze --no-pub
+        working-directory: ./in_app_review
+      - name: Run Tests
+        run: flutter test --no-pub
+        working-directory: ./in_app_review
   platform_interface_tests:
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +34,18 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: cd in_app_review_platform_interface/
-      - run: flutter pub get
-      - run: flutter analyze --no-pub
-      - run: flutter test --no-pub
+      - name: Install Flutter
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 -b $FLUTTER_VERSION _flutter
+          echo "$GITHUB_WORKSPACE/_flutter/bin" >> $GITHUB_PATH
+      - name: Verify Flutter Installation Succeeded
+        run: flutter doctor -v
+      - name: Get dependencies
+        run: flutter pub get
+        working-directory: ./in_app_review_platform_interface
+      - name: Static Analysis
+        run: flutter analyze --no-pub
+        working-directory: ./in_app_review_platform_interface
+      - name: Run Tests
+        run: flutter test --no-pub
+        working-directory: ./in_app_review_platform_interface
