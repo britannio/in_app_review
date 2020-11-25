@@ -1,3 +1,7 @@
+# [2.0.0-nullsafety]
+
+- Migrate to null safety.
+
 # [1.0.4-dev]
 
 - Update in_app_review_platform_interface to 1.0.5-dev
