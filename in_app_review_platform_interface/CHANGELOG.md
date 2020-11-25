@@ -1,3 +1,8 @@
+# [1.0.5-dev]
+
+- Remove dependency on `package_info`.
+- Handle `openStoreListing()` with native code for Android, IOS and MacOS.
+
 # [1.0.4]
 
 - Lower dependency version constraints
