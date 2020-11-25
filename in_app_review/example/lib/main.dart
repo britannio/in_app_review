@@ -5,6 +5,7 @@ import 'package:in_app_review/in_app_review.dart';
 
 void main() => runApp(MyApp());
 
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
               () => _isAvailable = isAvailable && !Platform.isAndroid,
             ),
           )
-          .catchError(() => setState(() => _isAvailable = false));
+          .catchError((_) => setState(() => _isAvailable = false));
     });
   }
 

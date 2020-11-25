@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:package_info/package_info.dart';
+import 'package:platform/platform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'in_app_review_platform_interface.dart';
@@ -11,9 +11,13 @@ import 'in_app_review_platform_interface.dart';
 /// An implementation of [UrlLauncherPlatform] that uses method channels.
 class MethodChannelInAppReview extends InAppReviewPlatform {
   MethodChannel _channel = MethodChannel('dev.britannio.in_app_review');
+  Platform _platform = const LocalPlatform();
 
   @visibleForTesting
   set channel(MethodChannel channel) => _channel = channel;
+
+  @visibleForTesting
+  set platform(Platform platform) => _platform = platform;
 
   @override
   Future<bool> isAvailable() => _channel.invokeMethod('isAvailable');
@@ -26,30 +30,16 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
     String appStoreId,
     String microsoftStoreId,
   }) async {
-    final bool isIOS = Platform.isIOS;
-    final bool isMacOS = Platform.isMacOS;
-    final bool isAndroid = Platform.isAndroid;
-    final bool isWindows = Platform.isWindows;
+    final bool isIOS = _platform.isIOS;
+    final bool isMacOS = _platform.isMacOS;
+    final bool isAndroid = _platform.isAndroid;
+    final bool isWindows = _platform.isWindows;
 
     if (isIOS || isMacOS) {
       assert(appStoreId != null);
-
-      final Uri uri = Uri(
-        scheme: isIOS ? 'https' : 'macappstore',
-        host: 'apps.apple.com',
-        path: 'app/id$appStoreId',
-        queryParameters: {'action': 'write-review'},
-      );
-
-      await _launchUrl(uri.toString());
+      await _channel.invokeMethod('openStoreListing', appStoreId);
     } else if (isAndroid) {
-      final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-      final String packageName = packageInfo.packageName;
-
-      await _launchUrl(
-        'https://play.google.com/store/apps/details?id=$packageName',
-      );
+      await _channel.invokeMethod('openStoreListing');
     } else if (isWindows) {
       assert(microsoftStoreId != null);
 

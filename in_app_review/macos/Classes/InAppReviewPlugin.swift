@@ -25,6 +25,16 @@ public class InAppReviewPlugin: NSObject, FlutterPlugin {
       } else {
         result(false)
       }
+    case "openStoreListing":
+        let storeId : String = call.arguments as! String;
+        
+        guard let writeReviewURL = URL(string: "macappstore://apps.apple.com/app/id" + storeId + "?action=write-review")
+        else {
+            result(FlutterError(code: "url_construct_fail", message: "Failed to construct url", details: nil))
+            return
+        }
+        NSWorkspace.shared.open(writeReviewURL)
+        result(nil);
     default:
       result(FlutterMethodNotImplemented)
     }

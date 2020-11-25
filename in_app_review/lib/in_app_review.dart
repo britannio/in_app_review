@@ -34,6 +34,7 @@ class InAppReview {
   /// screen on IOS & MacOS and the Microsoft Store on Windows.
   ///
   /// [appStoreId] is required for IOS & MacOS.
+  /// 
   /// [microsoftStoreId] is required for Windows.
   Future<void> openStoreListing({
     /// Required for IOS & MacOS.
