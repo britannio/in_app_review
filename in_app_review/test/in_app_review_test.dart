@@ -6,7 +6,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 void main() {
   final inAppReview = InAppReview.instance;
-  MockInAppReviewPlatform platform;
+  late MockInAppReviewPlatform platform;
 
   setUp(() {
     platform = MockInAppReviewPlatform();
