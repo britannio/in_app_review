@@ -7,7 +7,7 @@ import 'package:platform/platform.dart';
 void main() {
   final MethodChannelInAppReview methodChannelInAppReview =
       MethodChannelInAppReview();
-  MethodChannel channel;
+  late MethodChannel channel;
 
   setUp(() {
     channel = MockMethodChannel();
@@ -99,7 +99,8 @@ void main() {
 
         // ACT
         await methodChannelInAppReview.openStoreListing(
-            microsoftStoreId: microsoftStoreId);
+          microsoftStoreId: microsoftStoreId,
+        );
 
         // ASSERT
         verify(channel.invokeMethod('openStoreListing', microsoftStoreId));

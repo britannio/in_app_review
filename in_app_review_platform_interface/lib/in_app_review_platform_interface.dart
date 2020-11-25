@@ -60,10 +60,10 @@ abstract class InAppReviewPlatform extends PlatformInterface {
   /// [microsoftStoreId] is required for Windows.
   Future<void> openStoreListing({
     /// Required for IOS & MacOS.
-    String appStoreId,
+    String? appStoreId,
 
     /// Required for Windows.
-    String microsoftStoreId,
+    String? microsoftStoreId,
   }) {
     throw UnimplementedError('openStoreListing() has not been implemented.');
   }
