@@ -20,15 +20,16 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   set platform(Platform platform) => _platform = platform;
 
   @override
-  Future<bool> isAvailable() => _channel.invokeMethod('isAvailable');
+  Future<bool> isAvailable() =>
+      _channel.invokeMethod('isAvailable') as Future<bool>;
 
   @override
   Future<void> requestReview() => _channel.invokeMethod('requestReview');
 
   @override
   Future<void> openStoreListing({
-    String appStoreId,
-    String microsoftStoreId,
+    String? appStoreId,
+    String? microsoftStoreId,
   }) async {
     final bool isIOS = _platform.isIOS;
     final bool isMacOS = _platform.isMacOS;
