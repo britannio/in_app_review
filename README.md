@@ -49,11 +49,15 @@ Since there is a quota on how many times the pop up can be shown, you should **n
 ## Android
 You must upload your app to the Play Store to test `requestReview()`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
 
+Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
+
 More details at https://developer.android.com/guide/playcore/in-app-review/test
 
 ## IOS
 `requestReview()` can be tested via the IOS simulator or on a physical device. 
 Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
+
+Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
 
 `openStoreListing()` can only be tested with a physical device as the IOS simulator does not have the App Store installed.
 
