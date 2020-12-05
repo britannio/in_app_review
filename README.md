@@ -24,6 +24,8 @@ if (await inAppReview.isAvailable()) {
 }
 ```
 
+---
+
 Use the following code to open the Google Play Store on Android, the App Store on IOS & MacOS or the Microsoft Store on Windows. This is the recommended option if you want to permanently provide a button or other call-to-action to let users leave a review.
 ```dart
 import 'package:in_app_review/in_app_review.dart';

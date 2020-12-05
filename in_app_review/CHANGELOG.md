@@ -1,6 +1,6 @@
-# [1.0.4-dev]
+# [1.0.4]
 
-- Update in_app_review_platform_interface to 1.0.5-dev
+- Update in_app_review_platform_interface to 1.0.5
 - Remove dependency on `package_info`.
 - Handle `openStoreListing()` with native code for Android, IOS and MacOS.
 
