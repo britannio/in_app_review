@@ -7,13 +7,17 @@
 ![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
 
 # Description
-Flutter plugin that lets you show a system review pop up where users can leave a review for your app without needing to leave it. Alternatively you can open your store listing via a deep link.
+A Flutter plugin that lets you show a system review pop up where users can leave a review for your app without needing to leave it. Alternatively you can open your store listing via a deep link.
 
-Uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on iOS/MacOS
+It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on iOS/MacOS
 
 
 # Usage
-Use the following code to attempt to display the system review pop up. Beware that this does **not** guarantee that the pop up will be displayed as the quota may have been exceeded. On IOS & MacOS, this quota is three times in a 365 day period. On Android it is unclear: https://developer.android.com/guide/playcore/in-app-review#quotas
+
+## `requestReview()`
+
+The following code triggers the In-App Review prompt. This should **not** be used frequently as the underlying API's enforce strict quotas on this feature to provide a great user experience.
+
 ```dart
 import 'package:in_app_review/in_app_review.dart';
 
@@ -23,10 +27,23 @@ if (await inAppReview.isAvailable()) {
     inAppReview.requestReview();
 }
 ```
+### Do
+- Use this after a user has experienced your app for long enough to provide useful feedback. E.g. after the completion of a game level or after a few days.
+- Use this sparingly otherwise no pop up will appear.
+
+### Avoid
+- Triggering this via a button in your app as it will only work when the quota enforced by the underlying API has not been exceeded. ([Android](https://developer.android.com/guide/playcore/in-app-review#quotas))
+- Interrupting the user if they are mid way through a task.
+
+
+Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#Testing) for more info.
 
 ---
 
-Use the following code to open the Google Play Store on Android, the App Store on IOS & MacOS or the Microsoft Store on Windows. This is the recommended option if you want to permanently provide a button or other call-to-action to let users leave a review.
+## `openStoreListing()`
+
+The following code opens the Google Play Store on Android, the App Store with a review screen on IOS & MacOS and the Microsoft Store on Windows. Use this if you want to permanently provide a button or other call-to-action to let users leave a review as it isn't restricted by a quota.
+
 ```dart
 import 'package:in_app_review/in_app_review.dart';
 
@@ -38,6 +55,7 @@ inAppReview.openStoreListing(appStoreId: '...', microsoftStoreId: '...');
 `appStoreId` is only required on IOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID.
 
 `microsoftStoreId` is only required on Windows.
+
 
 # Guidelines
 https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/ratings-and-reviews/
