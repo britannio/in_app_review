@@ -18,7 +18,7 @@ class InAppReview {
   Future<bool> isAvailable() => InAppReviewPlatform.instance.isAvailable();
 
   /// Attempts to show the review dialog. It's recommended to first check if
-  /// this cannot be done via [isAvailable].
+  /// the device supports this feature via [isAvailable].
   ///
   /// To improve the users experience, IOS and Android enforce limitations
   /// that might prevent this from working after a few tries. IOS & MacOS users

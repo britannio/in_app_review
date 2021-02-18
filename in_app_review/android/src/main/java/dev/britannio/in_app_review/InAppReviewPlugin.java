@@ -156,6 +156,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
             return;
         }
 
+
         final Task<ReviewInfo> request = manager.requestReviewFlow();
 
         Log.i(TAG, "requestReview: Requesting review flow");

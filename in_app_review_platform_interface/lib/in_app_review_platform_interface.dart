@@ -3,10 +3,11 @@ import 'package:in_app_review_platform_interface/method_channel_in_app_review.da
 
 /// The interface that implementations of in_app_review must implement.
 ///
-/// Platform implementations should extend this class rather than implement it as `in_app_review`
-/// does not consider newly added methods to be breaking changes. Extending this class
-/// (using `extends`) ensures that the subclass will get the default implementation, while
-/// platform implementations that `implements` this interface will be broken by newly added
+/// Platform implementations should extend this class rather than implement it
+/// as `in_app_review` does not consider newly added methods to be breaking
+/// changes. Extending this class (using `extends`) ensures that the subclass
+/// will get the default implementation, while platform implementations that
+/// `implements` this interface will be broken by newly added
 /// [InAppReviewPlatform] methods.
 abstract class InAppReviewPlatform extends PlatformInterface {
   InAppReviewPlatform() : super(token: _token);
