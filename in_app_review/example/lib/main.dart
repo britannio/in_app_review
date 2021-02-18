@@ -5,6 +5,12 @@ import 'package:in_app_review/in_app_review.dart';
 
 void main() => runApp(MyApp());
 
+enum Availability { LOADING, AVAILABLE, UNAVAILABLE }
+
+extension on Availability {
+  String stringify() => this.toString().split('.').last;
+}
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -14,21 +20,24 @@ class _MyAppState extends State<MyApp> {
   final InAppReview _inAppReview = InAppReview.instance;
   String _appStoreId = '';
   String _microsoftStoreId = '';
-  bool _isAvailable;
+  Availability _availability = Availability.LOADING;
 
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _inAppReview
-          .isAvailable()
-          .then(
-            (bool isAvailable) => setState(
-              () => _isAvailable = isAvailable && !Platform.isAndroid,
-            ),
-          )
-          .catchError((_) => setState(() => _isAvailable = false));
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      try {
+        final isAvailable = await _inAppReview.isAvailable();
+
+        setState(() {
+          _availability = isAvailable && !Platform.isAndroid
+              ? Availability.AVAILABLE
+              : Availability.UNAVAILABLE;
+        });
+      } catch (e) {
+        setState(() => _availability = Availability.UNAVAILABLE);
+      }
     });
   }
 
@@ -45,19 +54,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    const loadingMessage = 'LOADING';
-    const availableMessage = 'AVAILABLE';
-    const unavailableMessage = 'UNAVAILABLE';
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('InAppReview Example')),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'InAppReview status: ${_isAvailable == null ? loadingMessage : _isAvailable ? availableMessage : unavailableMessage}',
-            ),
+            Text('InAppReview status: ${_availability.stringify()}'),
             TextField(
               onChanged: _setAppStoreId,
               decoration: InputDecoration(hintText: 'App Store ID'),
@@ -66,11 +69,11 @@ class _MyAppState extends State<MyApp> {
               onChanged: _setMicrosoftStoreId,
               decoration: InputDecoration(hintText: 'Microsoft Store ID'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: _requestReview,
               child: Text('Request Review'),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: _openStoreListing,
               child: Text('Open Store Listing'),
             ),
