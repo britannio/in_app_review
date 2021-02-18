@@ -2,20 +2,20 @@ name: in_app_review_platform_interface
 description: A common platform interface for the in_app_review plugin.
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
-version: 1.0.5
+version: 2.0.0-nullsafety
 homepage: https://github.com/britannio/in_app_review/tree/master/in_app_review_platform_interface
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0-0 <3.0.0'
   flutter: ">=1.12.13+hotfix.5 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  url_launcher: '>=5.6.0 <6.0.0'
-  plugin_platform_interface: ^1.0.0
-  platform: ">=2.0.0 <4.0.0"
+  url_launcher: ^6.0.0-nullsafety
+  plugin_platform_interface: ^1.1.0-nullsafety
+  platform: ^3.0.0-nullsafety
 
   
 dev_dependencies:
