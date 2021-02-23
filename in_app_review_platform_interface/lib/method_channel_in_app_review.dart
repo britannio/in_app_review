@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'in_app_review_platform_interface.dart';
 
-/// An implementation of [UrlLauncherPlatform] that uses method channels.
+/// An implementation of [InAppReviewPlatform] that uses method channels.
 class MethodChannelInAppReview extends InAppReviewPlatform {
   MethodChannel _channel = MethodChannel('dev.britannio.in_app_review');
   Platform _platform = const LocalPlatform();
@@ -37,18 +37,21 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
     final bool isWindows = _platform.isWindows;
 
     if (isIOS || isMacOS) {
-      assert(appStoreId != null);
-      await _channel.invokeMethod('openStoreListing', appStoreId);
+      await _channel.invokeMethod(
+        'openStoreListing',
+        ArgumentError.checkNotNull(appStoreId, 'appStoreId'),
+      );
     } else if (isAndroid) {
       await _channel.invokeMethod('openStoreListing');
     } else if (isWindows) {
-      assert(microsoftStoreId != null);
-
+      ArgumentError.checkNotNull(microsoftStoreId, 'microsoftStoreId');
       await _launchUrl(
         'ms-windows-store://review/?ProductId=$microsoftStoreId',
       );
     } else {
-      throw UnsupportedError('Platform not supported');
+      throw UnsupportedError(
+        'Platform(${_platform.operatingSystem}) not supported',
+      );
     }
   }
 
