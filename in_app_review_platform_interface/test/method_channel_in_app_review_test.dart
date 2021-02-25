@@ -1,49 +1,68 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:in_app_review_platform_interface/method_channel_in_app_review.dart';
-import 'package:mockito/mockito.dart';
 import 'package:platform/platform.dart';
 
 void main() {
-  final MethodChannelInAppReview methodChannelInAppReview =
-      MethodChannelInAppReview();
-  late MethodChannel channel;
+  TestWidgetsFlutterBinding.ensureInitialized();
+  late MethodChannelInAppReview methodChannelInAppReview;
+  late List<MethodCall> log = [];
+  const MethodChannel channel = MethodChannel('dev.britannio.in_app_review');
 
   setUp(() {
-    channel = MockMethodChannel();
+    methodChannelInAppReview = MethodChannelInAppReview();
     methodChannelInAppReview.channel = channel;
+    log = <MethodCall>[];
+  });
+
+  tearDown(() {
+    log.clear();
+  });
+
+  channel.setMockMethodCallHandler((call) async {
+    log.add(call);
+
+    switch (call.method) {
+      case 'isAvailable':
+        return true;
+      case 'requestReview':
+      case 'openStoreListing':
+        return null;
+      default:
+        assert(false);
+        return null;
+    }
   });
 
   group('isAvailable', () {
     test(
-      'should invoke the isAvailable channel method',
+      'should invoke the isAvailable method channel',
       () async {
         // ACT
         await methodChannelInAppReview.isAvailable();
 
         // ASSERT
-        verify(channel.invokeMethod('isAvailable'));
-        verifyNoMoreInteractions(channel);
+        expect(log, <Matcher>[isMethodCall('isAvailable', arguments: null)]);
       },
     );
   });
+
   group('requestReview', () {
     test(
-      'should invoke the requestReview channel method',
+      'should invoke the requestReview method channel',
       () async {
         // ACT
         await methodChannelInAppReview.requestReview();
 
         // ASSERT
-        verify(channel.invokeMethod('requestReview'));
-        verifyNoMoreInteractions(channel);
+        expect(log, <Matcher>[isMethodCall('requestReview', arguments: null)]);
       },
     );
   });
 
   group('openStoreListing', () {
     test(
-      'should invoke the openStoreListing channel method on Android',
+      'should invoke the openStoreListing method channel on Android',
       () async {
         // ARRANGE
         methodChannelInAppReview.platform =
@@ -53,12 +72,14 @@ void main() {
         await methodChannelInAppReview.openStoreListing();
 
         // ASSERT
-        verify(channel.invokeMethod('openStoreListing'));
-        verifyNoMoreInteractions(channel);
+        expect(
+          log,
+          <Matcher>[isMethodCall('openStoreListing', arguments: null)],
+        );
       },
     );
     test(
-      'should invoke the openStoreListing channel method on IOS',
+      'should invoke the openStoreListing method channel on IOS',
       () async {
         // ARRANGE
         methodChannelInAppReview.platform =
@@ -69,12 +90,12 @@ void main() {
         await methodChannelInAppReview.openStoreListing(appStoreId: appStoreId);
 
         // ASSERT
-        verify(channel.invokeMethod('openStoreListing', appStoreId));
-        verifyNoMoreInteractions(channel);
+        expect(log,
+            <Matcher>[isMethodCall('openStoreListing', arguments: appStoreId)]);
       },
     );
     test(
-      'should invoke the openStoreListing channel method on MacOS',
+      'should invoke the openStoreListing method channel on MacOS',
       () async {
         // ARRANGE
         methodChannelInAppReview.platform =
@@ -85,12 +106,12 @@ void main() {
         await methodChannelInAppReview.openStoreListing(appStoreId: appStoreId);
 
         // ASSERT
-        verify(channel.invokeMethod('openStoreListing', appStoreId));
-        verifyNoMoreInteractions(channel);
+        expect(log,
+            <Matcher>[isMethodCall('openStoreListing', arguments: appStoreId)]);
       },
     );
     test(
-      'should invoke the openStoreListing channel method on Windows',
+      'should invoke the openStoreListing method channel on Windows',
       () async {
         // ARRANGE
         methodChannelInAppReview.platform =
@@ -103,13 +124,12 @@ void main() {
         );
 
         // ASSERT
-        verify(channel.invokeMethod('openStoreListing', microsoftStoreId));
-        verifyNoMoreInteractions(channel);
+        expect(log, <Matcher>[
+          isMethodCall('openStoreListing', arguments: microsoftStoreId)
+        ]);
       },
       skip:
           'The windows uwp implementation still uses the url_launcher package',
     );
   });
 }
-
-class MockMethodChannel extends Mock implements MethodChannel {}

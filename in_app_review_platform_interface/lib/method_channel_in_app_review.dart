@@ -20,8 +20,9 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   set platform(Platform platform) => _platform = platform;
 
   @override
-  Future<bool> isAvailable() =>
-      _channel.invokeMethod<bool>('isAvailable') as Future<bool>;
+  Future<bool> isAvailable() => _channel
+      .invokeMethod<bool>('isAvailable')
+      .then((value) => value ?? false);
 
   @override
   Future<void> requestReview() => _channel.invokeMethod('requestReview');
