@@ -2,15 +2,12 @@ PODS:
   - Flutter (1.0.0)
   - in_app_review (0.2.0):
     - Flutter
-  - integration_test (0.0.1):
-    - Flutter
   - url_launcher (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 EXTERNAL SOURCES:
@@ -18,17 +15,14 @@ EXTERNAL SOURCES:
     :path: Flutter
   in_app_review:
     :path: ".symlinks/plugins/in_app_review/ios"
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   in_app_review: 4a97249f7a2f539a0f294c2d9196b7fe35e49541
-  integration_test: 5ed24a436eb7ec17b6a13046e9bf7ca4a404e59e
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

@@ -38,3 +38,4 @@ flutter:
         pluginClass: SwiftInAppReviewPlugin
       macos:
         pluginClass: InAppReviewPlugin
+        default_package: in_app_review
