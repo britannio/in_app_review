@@ -39,10 +39,11 @@ void main() {
       'should invoke the isAvailable method channel',
       () async {
         // ACT
-        await methodChannelInAppReview.isAvailable();
+        final result = await methodChannelInAppReview.isAvailable();
 
         // ASSERT
         expect(log, <Matcher>[isMethodCall('isAvailable', arguments: null)]);
+        expect(result, isTrue);
       },
     );
   });
