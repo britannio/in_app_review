@@ -1,6 +1,6 @@
 name: tests
 env:
-  FLUTTER_VERSION: "stable"
+  FLUTTER_VERSION: "beta"
 on:
   - push
   - pull_request
