@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/in_app_review.iml" filepath="$PROJECT_DIR$/.idea/modules/in_app_review.iml" group="in_app_review" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/in_app_review.iml" filepath="$PROJECT_DIR$/.idea/modules/in_app_review.iml" />
     </modules>
   </component>
 </project>

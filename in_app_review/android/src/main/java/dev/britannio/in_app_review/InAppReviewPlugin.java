@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
-import com.google.android.play.core.tasks.OnCompleteListener;
 import com.google.android.play.core.tasks.Task;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -39,7 +38,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     private ReviewInfo reviewInfo;
 
-    private String TAG = "InAppReviewPlugin";
+    private final String TAG = "InAppReviewPlugin";
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -55,17 +54,22 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        if (call.method.equals("isAvailable")) {
-            isAvailable(result);
-        } else if (call.method.equals("requestReview")) {
-            requestReview(result);
-        } else if (call.method.equals("openStoreListing")) {
-            openStoreListing(result);
-        } else {
-            result.notImplemented();
+        Log.i(TAG, "onMethodCall: " + call.method);
+        switch (call.method) {
+            case "isAvailable":
+                isAvailable(result);
+                break;
+            case "requestReview":
+                requestReview(result);
+                break;
+            case "openStoreListing":
+                openStoreListing(result);
+                break;
+            default:
+                result.notImplemented();
+                break;
         }
     }
-
 
     @Override
     public void onDetachedFromActivityForConfigChanges() {
@@ -90,11 +94,16 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     private void isAvailable(final Result result) {
         Log.i(TAG, "isAvailable: called");
+        if (noContextOrActivity()) {
+            result.success(false);
+            return;
+        }
+
         final boolean playStoreInstalled = isPlayStoreInstalled();
         final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
         Log.i(TAG, "isAvailable: playStoreInstalled: " + playStoreInstalled);
-        Log.i(TAG, "isAvailable:lollipopOrLater: " + lollipopOrLater);
+        Log.i(TAG, "isAvailable: lollipopOrLater: " + lollipopOrLater);
 
         if (!(playStoreInstalled && lollipopOrLater)) {
             // The play store isn't installed or the device isn't running Android 5 Lollipop(API 21) or
@@ -112,79 +121,61 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     private void cacheReviewInfo(final Result result) {
         Log.i(TAG, "cacheReviewInfo: called");
-        if (context == null) {
-            result.error("error", "Android context not available", null);
-            return;
-        }
+        if (noContextOrActivity(result)) return;
+
         final ReviewManager manager = ReviewManagerFactory.create(context);
 
         final Task<ReviewInfo> request = manager.requestReviewFlow();
 
         Log.i(TAG, "cacheReviewInfo: Requesting review flow");
-        request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
-            @Override
-            public void onComplete(@NonNull Task<ReviewInfo> task) {
-                if (task.isSuccessful()) {
-                    // We can get the ReviewInfo object
-                    Log.i(TAG, "onComplete: Successfully requested review flow");
-                    reviewInfo = task.getResult();
-                    result.success(true);
-                } else {
-                    // The API isn't available
-                    Log.i(TAG, "onComplete: Unsuccessfully requested review flow");
-                    result.success(false);
-                }
+        request.addOnCompleteListener((task) -> {
+            if (task.isSuccessful()) {
+                // We can get the ReviewInfo object
+                Log.i(TAG, "onComplete: Successfully requested review flow");
+                reviewInfo = task.getResult();
+                result.success(true);
+            } else {
+                // The API isn't available
+                Log.w(TAG, "onComplete: Unsuccessfully requested review flow");
+                result.success(false);
             }
         });
+
     }
 
     private void requestReview(final Result result) {
         Log.i(TAG, "requestReview: called");
-        if (context == null) {
-            result.error("error", "Android context not available", null);
-            return;
-        }
-        if (activity == null) {
-            result.error("error", "Android activity not available", null);
-        }
+        if (noContextOrActivity(result)) return;
 
         final ReviewManager manager = ReviewManagerFactory.create(context);
-
 
         if (reviewInfo != null) {
             launchReviewFlow(result, manager, reviewInfo);
             return;
         }
 
-
         final Task<ReviewInfo> request = manager.requestReviewFlow();
 
         Log.i(TAG, "requestReview: Requesting review flow");
-        request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
-            @Override
-            public void onComplete(@NonNull Task<ReviewInfo> task) {
-                if (task.isSuccessful()) {
-                    // We can get the ReviewInfo object
-                    Log.i(TAG, "onComplete: Successfully requested review flow");
-                    ReviewInfo reviewInfo = task.getResult();
-                    launchReviewFlow(result, manager, reviewInfo);
-                } else {
-                    Log.i(TAG, "onComplete: Unsuccessfully requested review flow");
-                    result.error("error", "In-App Review API unavailable", null);
-                }
+        request.addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                // We can get the ReviewInfo object
+                Log.i(TAG, "onComplete: Successfully requested review flow");
+                ReviewInfo reviewInfo = task.getResult();
+                launchReviewFlow(result, manager, reviewInfo);
+            } else {
+                Log.w(TAG, "onComplete: Unsuccessfully requested review flow");
+                result.error("error", "In-App Review API unavailable", null);
             }
         });
     }
 
     private void launchReviewFlow(final Result result, ReviewManager manager, ReviewInfo reviewInfo) {
         Log.i(TAG, "launchReviewFlow: called");
+        if (noContextOrActivity(result)) return;
+
         Task<Void> flow = manager.launchReviewFlow(activity, reviewInfo);
-        flow.addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                result.success(null);
-            }
-        });
+        flow.addOnCompleteListener(task -> result.success(null));
     }
 
     private boolean isPlayStoreInstalled() {
@@ -196,15 +187,11 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         }
     }
 
+
     private void openStoreListing(Result result) {
-        if (context == null) {
-            result.error("error", "Android context not available", null);
-            return;
-        }
-        if (activity == null) {
-            result.error("error", "Android activity not available", null);
-            return;
-        }
+        Log.i(TAG, "openStoreListing: called");
+        if (noContextOrActivity(result)) return;
+
         // https://developer.android.com/distribute/marketing-tools/linking-to-google-play#OpeningDetails
         final String packageName = context.getPackageName();
 
@@ -215,7 +202,34 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         activity.startActivity(intent);
 
         result.success(null);
+    }
 
+    private boolean noContextOrActivity() {
+        Log.i(TAG, "noContextOrActivity: called");
+        if (context == null) {
+            Log.e(TAG, "noContextOrActivity: Android context not available");
+            return true;
+        } else if (activity == null) {
+            Log.e(TAG, "noContextOrActivity: Android activity not available");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean noContextOrActivity(Result result) {
+        Log.i(TAG, "noContextOrActivity: called");
+        if (context == null) {
+            Log.e(TAG, "noContextOrActivity: Android context not available");
+            result.error("error", "Android context not available", null);
+            return true;
+        } else if (activity == null) {
+            Log.e(TAG, "noContextOrActivity: Android activity not available");
+            result.error("error", "Android activity not available", null);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
