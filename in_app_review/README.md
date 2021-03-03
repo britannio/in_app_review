@@ -7,7 +7,7 @@
 ![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
 
 # Description
-A Flutter plugin that lets you show a system review pop up where users can leave a review for your app without needing to leave it. Alternatively, you can open your store listing via a deep link.
+A Flutter plugin that lets you show a review pop up where users can leave a review for your app without needing to close your app. Alternatively, you can open your store listing via a deep link.
 
 It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on iOS/MacOS.
 
@@ -36,7 +36,7 @@ if (await inAppReview.isAvailable()) {
 - Interrupting the user if they are mid way through a task.
 
 
-Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#Testing) for more info.
+**Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#Testing) for more info.**
 
 ---
 
@@ -91,7 +91,7 @@ This plugin can be tested by running your MacOS application locally.
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
 | `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
 
-Upvote https://github.com/flutter/flutter/issues/64958 if you're interested in Windows support!
+Upvote https://github.com/flutter/flutter/issues/14967 if you're interested in Windows support!
 
 # Requirements
 ## Android
