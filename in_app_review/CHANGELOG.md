@@ -1,3 +1,7 @@
+# [2.0.1-dev]
+
+- Fix rare null pointer exception on Android
+
 # [2.0.0]
 
 - Migrate to null safety.
