@@ -2,7 +2,9 @@
 
 - Fix rare null pointer exception on Android
 - Fix MissingPluginException on MacOS
-- Update in_app_review_platform_interface to 2.0.1
+- Bump the minimum Dart SDK version from `2.12.0-0` to `2.12.0`.
+- Bump the minimum Flutter version to `2.0.0`.
+- Update in_app_review_platform_interface to 2.0.2
 
 # [2.0.0]
 
