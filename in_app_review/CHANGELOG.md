@@ -2,6 +2,7 @@
 
 - Fix rare null pointer exception on Android
 - Fix MissingPluginException on MacOS
+- Update in_app_review_platform_interface to 2.0.1
 
 # [2.0.0]
 
