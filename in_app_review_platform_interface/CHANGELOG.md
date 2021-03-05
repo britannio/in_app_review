@@ -1,3 +1,7 @@
+# [2.0.1]
+
+- Bump the minimum Dart SDK version from `2.12.0-0` to `2.12.0`.
+
 # [2.0.0]
 
 - Migrate to null safety.
