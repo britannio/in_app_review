@@ -73,11 +73,11 @@ packages:
     source: path
     version: "2.0.1-dev"
   in_app_review_platform_interface:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "../../in_app_review_platform_interface"
-      relative: true
-    source: path
+      name: in_app_review_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "2.0.0"
   js:
     dependency: transitive
@@ -132,7 +132,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   stack_trace:
     dependency: transitive
     description:
