@@ -1,6 +1,7 @@
-# [2.0.1-dev]
+# [2.0.1]
 
 - Fix rare null pointer exception on Android
+- Fix MissingPluginException on MacOS
 
 # [2.0.0]
 
