@@ -35,6 +35,6 @@ flutter:
         package: dev.britannio.in_app_review
         pluginClass: InAppReviewPlugin
       ios:
-        pluginClass: SwiftInAppReviewPlugin
+        pluginClass: InAppReviewPlugin
       macos:
         pluginClass: InAppReviewPlugin
