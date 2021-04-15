@@ -1,3 +1,7 @@
+# [2.0.2]
+
+- Replace IOS Swift code with Objective-C to add compatibility with Objective-C Flutter apps.
+
 # [2.0.1]
 
 - Fix rare null pointer exception on Android
