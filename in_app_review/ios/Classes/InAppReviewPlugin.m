@@ -32,6 +32,7 @@
         [self logMessage:@"iOS 14+"];
         UIWindowScene *scene = [self findActiveScene];
         if (scene) {
+            [self logMessage:@"scene found"];
             [SKStoreReviewController requestReviewInScene:scene];
             result(nil);
         } else {
@@ -85,7 +86,7 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://apps.apple.com/app/id%@?action=write-review", storeId]];
     
     if (!url) {
-        result([FlutterError errorWithCode:@"url_construct_fail"
+        result([FlutterError errorWithCode:@"url-construct-fail"
                                    message:@"Failed to construct url"
                                    details:nil]);
         return;
