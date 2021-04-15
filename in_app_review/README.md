@@ -1,7 +1,7 @@
 # in_app_review
 
 ![tests](https://github.com/britannio/in_app_review/workflows/tests/badge.svg?branch=master)
-[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) [![pub points](https://badges.bar/in_app_review/pub%20points)](https://pub.dev/packages/in_app_review/score) [![likes](https://badges.bar/in_app_review/likes)](https://pub.dev/packages/in_app_review/score) [![popularity](https://badges.bar/in_app_review/popularity)](https://pub.dev/packages/in_app_review/score)
+[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) [![pub points](https://badges.bar/in_app_review/pub%20points)](https://pub.dev/packages/in_app_review/score) [![likes](https://badges.bar/in_app_review/likes)](https://pub.dev/packages/in_app_review/score) [![popularity](https://badges.bar/in_app_review/popularity)](https://pub.dev/packages/in_app_review/score) [![Latest compatibility result for Stable channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=stable)](https://pub.green/packages/in_app_review) [![Latest compatibility result for Beta channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=beta)](https://pub.green/packages/in_app_review) [![Latest compatibility result for Dev channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=dev)](https://pub.green/packages/in_app_review)
 
 ![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/android.jpg)
 ![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
