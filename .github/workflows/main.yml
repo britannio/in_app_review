@@ -1,18 +1,15 @@
 name: tests
 env:
-  FLUTTER_VERSION: "2.0.4"
+  FLUTTER_VERSION: "2.2.3"
 on:
-  - push
-  - pull_request
+  push:
+  pull_request:
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: britannio/action-install-flutter@v1.0
+      - uses: britannio/action-install-flutter@v1.1
         with:
           version: $FLUTTER_VERSION
       - name: Get dependencies
@@ -28,10 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: britannio/action-install-flutter@v1.0
+      - uses: britannio/action-install-flutter@v1.1
         with:
           version: $FLUTTER_VERSION
       - name: Get dependencies
