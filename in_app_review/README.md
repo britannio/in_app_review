@@ -36,7 +36,7 @@ if (await inAppReview.isAvailable()) {
 - Interrupting the user if they are mid way through a task.
 
 
-**Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#Testing) for more info.**
+**Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#testing) for more info.**
 
 ---
 
