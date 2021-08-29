@@ -31,16 +31,8 @@
     if (@available(iOS 14, *)) {
         [self logMessage:@"iOS 14+"];
         UIWindowScene *scene = [self findActiveScene];
-        if (scene) {
-            [self logMessage:@"scene found"];
-            [SKStoreReviewController requestReviewInScene:scene];
-            result(nil);
-        } else {
-            [self logMessage:@"scene not found"];
-            result([FlutterError errorWithCode:@"no-scene"
-                                       message:@"In-App Review could not find active scene"
-                                       details:nil]);
-        }
+        [SKStoreReviewController requestReviewInScene:scene];
+        result(nil);
     } else if (@available(iOS 10.3, *)) {
         [self logMessage:@"iOS 10.3+"];
         [SKStoreReviewController requestReview];
