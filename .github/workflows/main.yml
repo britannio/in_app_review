@@ -1,12 +1,18 @@
 name: tests
+  
 env:
   FLUTTER_VERSION: "2.2.3"
+  
 on:
   push:
   pull_request:
+  
 jobs:
   tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./in_app_review
     steps:
       - uses: actions/checkout@v2
       - uses: britannio/action-install-flutter@v1.1
@@ -14,15 +20,16 @@ jobs:
           version: $FLUTTER_VERSION
       - name: Get dependencies
         run: flutter pub get
-        working-directory: ./in_app_review
       - name: Static Analysis
         run: flutter analyze --no-pub
-        working-directory: ./in_app_review
       - name: Run Tests
         run: flutter test --no-pub
-        working-directory: ./in_app_review
+          
   platform_interface_tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./in_app_review_platform_interface
     steps:
       - uses: actions/checkout@v2
       - uses: britannio/action-install-flutter@v1.1
@@ -30,10 +37,7 @@ jobs:
           version: $FLUTTER_VERSION
       - name: Get dependencies
         run: flutter pub get
-        working-directory: ./in_app_review_platform_interface
       - name: Static Analysis
         run: flutter analyze --no-pub
-        working-directory: ./in_app_review_platform_interface
       - name: Run Tests
         run: flutter test --no-pub
-        working-directory: ./in_app_review_platform_interface
