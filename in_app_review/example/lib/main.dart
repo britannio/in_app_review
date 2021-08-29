@@ -1,26 +1,24 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(InAppReviewExampleApp());
 
-enum Availability { LOADING, AVAILABLE, UNAVAILABLE }
+enum Availability { loading, available, unavailable }
 
-extension on Availability {
-  String stringify() => this.toString().split('.').last;
-}
-
-class MyApp extends StatefulWidget {
+class InAppReviewExampleApp extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _InAppReviewExampleAppState createState() => _InAppReviewExampleAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   final InAppReview _inAppReview = InAppReview.instance;
+
   String _appStoreId = '';
   String _microsoftStoreId = '';
-  Availability _availability = Availability.LOADING;
+  Availability _availability = Availability.loading;
 
   @override
   void initState() {
@@ -31,12 +29,15 @@ class _MyAppState extends State<MyApp> {
         final isAvailable = await _inAppReview.isAvailable();
 
         setState(() {
+          // This plugin cannot be tested on Android by installing your app
+          // locally. See https://github.com/britannio/in_app_review#testing for
+          // more information.
           _availability = isAvailable && !Platform.isAndroid
-              ? Availability.AVAILABLE
-              : Availability.UNAVAILABLE;
+              ? Availability.available
+              : Availability.unavailable;
         });
       } catch (e) {
-        setState(() => _availability = Availability.UNAVAILABLE);
+        setState(() => _availability = Availability.unavailable);
       }
     });
   }
@@ -54,13 +55,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final status = describeEnum(_availability);
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('InAppReview Example')),
+        appBar: AppBar(title: const Text('In App Review Example')),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('InAppReview status: ${_availability.stringify()}'),
+            Text('In App Review status: $status'),
             TextField(
               onChanged: _setAppStoreId,
               decoration: InputDecoration(hintText: 'App Store ID'),
