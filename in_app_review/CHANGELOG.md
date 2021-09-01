@@ -1,3 +1,6 @@
+# [2.0.3]
+
+- Fix iOS no-scene exception. ([#41](https://github.com/britannio/in_app_review/issues/41))
 # [2.0.2]
 
 - Replace IOS Swift code with Objective-C to add compatibility with Objective-C Flutter apps.

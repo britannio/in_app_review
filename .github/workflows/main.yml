@@ -15,7 +15,7 @@ jobs:
         working-directory: ./in_app_review
     steps:
       - uses: actions/checkout@v2
-      - uses: britannio/action-install-flutter@v1.1
+      - uses: britannio/action-install-flutter@v1
         with:
           version: $FLUTTER_VERSION
       - name: Get dependencies
@@ -32,7 +32,7 @@ jobs:
         working-directory: ./in_app_review_platform_interface
     steps:
       - uses: actions/checkout@v2
-      - uses: britannio/action-install-flutter@v1.1
+      - uses: britannio/action-install-flutter@v1
         with:
           version: $FLUTTER_VERSION
       - name: Get dependencies
