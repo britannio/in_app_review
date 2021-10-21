@@ -11,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   
-  in_app_review_platform_interface:
-    path: ../in_app_review_platform_interface
+  in_app_review_platform_interface: ^2.0.2 
   
 dev_dependencies:
   flutter_test:
