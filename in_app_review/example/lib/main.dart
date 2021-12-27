@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 
@@ -55,14 +54,13 @@ class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
 
   @override
   Widget build(BuildContext context) {
-    final status = describeEnum(_availability);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('In App Review Example')),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('In App Review status: $status'),
+            Text('In App Review status: ${_availability.name}'),
             TextField(
               onChanged: _setAppStoreId,
               decoration: InputDecoration(hintText: 'App Store ID'),
