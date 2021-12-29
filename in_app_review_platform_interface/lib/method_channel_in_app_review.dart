@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:platform/platform.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,9 +19,12 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   set platform(Platform platform) => _platform = platform;
 
   @override
-  Future<bool> isAvailable() => _channel
-      .invokeMethod<bool>('isAvailable')
-      .then((value) => value ?? false);
+  Future<bool> isAvailable() async {
+    if (kIsWeb) return false;
+    return _channel
+        .invokeMethod<bool>('isAvailable')
+        .then((available) => available ?? false, onError: (_) => false);
+  }
 
   @override
   Future<void> requestReview() => _channel.invokeMethod('requestReview');
