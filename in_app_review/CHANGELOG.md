@@ -1,6 +1,6 @@
 # [2.0.4]
 
-- Migrate from jcenter to mavenCentral
+- Migrate maven repository from jcenter to mavenCentral
 # [2.0.3]
 
 - Fix iOS no-scene exception. ([#41](https://github.com/britannio/in_app_review/issues/41))
