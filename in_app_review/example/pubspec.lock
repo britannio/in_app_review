@@ -71,14 +71,14 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.0.3"
+    version: "2.0.4"
   in_app_review_platform_interface:
     dependency: transitive
     description:
       name: in_app_review_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   js:
     dependency: transitive
     description:
