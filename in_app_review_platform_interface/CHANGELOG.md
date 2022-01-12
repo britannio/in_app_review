@@ -1,3 +1,7 @@
+# [2.0.3]
+
+- `isAvailable()` now returns `false` on web.
+
 # [2.0.2]
 
 - Bump the minimum Flutter version to `2.0.0`.
