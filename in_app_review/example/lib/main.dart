@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 
-void main() => runApp(InAppReviewExampleApp());
+void main() => runApp(const InAppReviewExampleApp());
 
 enum Availability { loading, available, unavailable }
 
 class InAppReviewExampleApp extends StatefulWidget {
+  const InAppReviewExampleApp({Key? key}) : super(key: key);
+
   @override
   _InAppReviewExampleAppState createState() => _InAppReviewExampleAppState();
 }
@@ -63,19 +65,19 @@ class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
             Text('In App Review status: ${_availability.name}'),
             TextField(
               onChanged: _setAppStoreId,
-              decoration: InputDecoration(hintText: 'App Store ID'),
+              decoration: const InputDecoration(hintText: 'App Store ID'),
             ),
             TextField(
               onChanged: _setMicrosoftStoreId,
-              decoration: InputDecoration(hintText: 'Microsoft Store ID'),
+              decoration: const InputDecoration(hintText: 'Microsoft Store ID'),
             ),
             ElevatedButton(
               onPressed: _requestReview,
-              child: Text('Request Review'),
+              child: const Text('Request Review'),
             ),
             ElevatedButton(
               onPressed: _openStoreListing,
-              child: Text('Open Store Listing'),
+              child: const Text('Open Store Listing'),
             ),
           ],
         ),
