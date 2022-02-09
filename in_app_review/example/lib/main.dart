@@ -37,7 +37,7 @@ class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
               ? Availability.available
               : Availability.unavailable;
         });
-      } catch (e) {
+      } catch (_) {
         setState(() => _availability = Availability.unavailable);
       }
     });
@@ -57,6 +57,7 @@ class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'In App Review Example',
       home: Scaffold(
         appBar: AppBar(title: const Text('In App Review Example')),
         body: Column(
