@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  url_launcher: ^6.0.0
+  url_launcher: ^6.1.2
   plugin_platform_interface: ^2.0.0
   platform: ^3.0.0
 
@@ -21,4 +21,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
