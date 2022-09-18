@@ -55,8 +55,8 @@ void main() {
       'should call InAppReviewPlatform.openStoreListing()',
       () async {
         // ARRANGE
-        final appStoreId = 'app_store_id';
-        final microsoftStoreId = 'microsoft_store_id';
+        const appStoreId = 'app_store_id';
+        const microsoftStoreId = 'microsoft_store_id';
         when(platform.openStoreListing(
           appStoreId: appStoreId,
           microsoftStoreId: microsoftStoreId,
@@ -81,16 +81,19 @@ void main() {
 class MockInAppReviewPlatform extends Mock
     with MockPlatformInterfaceMixin
     implements InAppReviewPlatform {
+  @override
   Future<bool> isAvailable() => super.noSuchMethod(
         Invocation.method(#isAvailable, null),
         returnValue: Future.value(true),
       );
 
+  @override
   Future<void> requestReview() => super.noSuchMethod(
         Invocation.method(#requestReview, null),
         returnValue: Future<void>.value(),
       );
 
+  @override
   Future<void> openStoreListing({
     String? appStoreId,
     String? microsoftStoreId,
