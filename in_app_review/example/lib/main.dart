@@ -11,10 +11,10 @@ class InAppReviewExampleApp extends StatefulWidget {
   const InAppReviewExampleApp({Key? key}) : super(key: key);
 
   @override
-  _InAppReviewExampleAppState createState() => _InAppReviewExampleAppState();
+  InAppReviewExampleAppState createState() => InAppReviewExampleAppState();
 }
 
-class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
+class InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   final InAppReview _inAppReview = InAppReview.instance;
 
   String _appStoreId = '';
@@ -25,7 +25,7 @@ class _InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
         final isAvailable = await _inAppReview.isAvailable();
 
