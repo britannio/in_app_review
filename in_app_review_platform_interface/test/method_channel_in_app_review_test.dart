@@ -80,7 +80,7 @@ void main() {
       },
     );
     test(
-      'should invoke the openStoreListing method channel on IOS',
+      'should invoke the openStoreListing method channel on iOS',
       () async {
         // ARRANGE
         methodChannelInAppReview.platform =

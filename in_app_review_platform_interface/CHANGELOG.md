@@ -21,7 +21,7 @@
 # [1.0.5]
 
 - Remove dependency on `package_info`.
-- Handle `openStoreListing()` with native code for Android, IOS and MacOS.
+- Handle `openStoreListing()` with native code for Android, iOS and MacOS.
 
 # [1.0.4]
 
