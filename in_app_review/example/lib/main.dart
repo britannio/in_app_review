@@ -25,7 +25,7 @@ class InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    (<T>(T? o) => o!)(WidgetsBinding.instance).addPostFrameCallback((_) async {
       try {
         final isAvailable = await _inAppReview.isAvailable();
 
