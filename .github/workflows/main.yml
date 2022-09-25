@@ -1,14 +1,14 @@
 name: tests
-  
-env:
-  FLUTTER_VERSION: "2.10.0"
-  
+   
 on:
   push:
   pull_request:
   
 jobs:
   tests:
+    strategy:
+      matrix:
+        flutter-version: ["2.10.5", "3.0.5", "3.3.2"]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: britannio/action-install-flutter@v1
         with:
-          version: $FLUTTER_VERSION
+          version: ${{ matrix.flutter-version }}
       - name: Get dependencies
         run: flutter pub get
       - name: Static Analysis
@@ -26,6 +26,9 @@ jobs:
         run: flutter test --no-pub
           
   platform_interface_tests:
+    strategy:
+      matrix:
+        flutter-version: ["2.10.5", "3.0.5", "3.3.2"]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -34,7 +37,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: britannio/action-install-flutter@v1
         with:
-          version: $FLUTTER_VERSION
+          version: ${{ matrix.flutter-version }}
       - name: Get dependencies
         run: flutter pub get
       - name: Static Analysis
