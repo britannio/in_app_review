@@ -1,3 +1,9 @@
+# [2.0.5]
+
+- Migrate Android Play Core dependency to Play Review 2.0.0.
+- Recreate the example app.
+- Update in_app_review_platform_interface to 2.0.4
+
 # [2.0.4]
 
 - Migrate maven repository from jcenter to mavenCentral
