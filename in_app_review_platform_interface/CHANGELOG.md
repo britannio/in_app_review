@@ -1,3 +1,7 @@
+# [2.0.4]
+
+- Update usage of `pkg:url_launcher` to address deprecations.
+
 # [2.0.3]
 
 - `isAvailable()` now returns `false` on web.
