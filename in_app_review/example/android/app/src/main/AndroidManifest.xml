@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.britannio.in_app_review_example">
+    package="dev.britannio.in_app_review_demo">
    <application
-        android:label="in_app_review_example"
+        android:label="in_app_review"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

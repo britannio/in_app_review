@@ -1,3 +1,7 @@
+# [2.0.4]
+
+- Update usage of `pkg:url_launcher` to address deprecations.
+
 # [2.0.3]
 
 - `isAvailable()` now returns `false` on web.
@@ -17,7 +21,7 @@
 # [1.0.5]
 
 - Remove dependency on `package_info`.
-- Handle `openStoreListing()` with native code for Android, IOS and MacOS.
+- Handle `openStoreListing()` with native code for Android, iOS and MacOS.
 
 # [1.0.4]
 

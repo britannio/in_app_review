@@ -4,7 +4,7 @@
 [![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) [![pub points](https://badges.bar/in_app_review/pub%20points)](https://pub.dev/packages/in_app_review/score) [![likes](https://badges.bar/in_app_review/likes)](https://pub.dev/packages/in_app_review/score) [![popularity](https://badges.bar/in_app_review/popularity)](https://pub.dev/packages/in_app_review/score) [![Latest compatibility result for Stable channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=stable)](https://pub.green/packages/in_app_review) [![Latest compatibility result for Beta channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=beta)](https://pub.green/packages/in_app_review) [![Latest compatibility result for Dev channel](https://img.shields.io/endpoint?url=https://pub.green/packages/in_app_review/badge?channel=dev)](https://pub.green/packages/in_app_review)
 
 ![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/android.jpg)
-![In-App Review IOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
+![In-App Review iOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
 
 # Description
 A Flutter plugin that lets you show a review pop up where users can leave a review for your app without needing to close your app. Alternatively, you can open your store listing via a deep link.
@@ -42,7 +42,7 @@ if (await inAppReview.isAvailable()) {
 
 ## `openStoreListing()`
 
-The following code opens the Google Play Store on Android, the App Store with a review screen on IOS & MacOS and the Microsoft Store on Windows. Use this if you want to permanently provide a button or other call-to-action to let users leave a review as it isn't restricted by a quota.
+The following code opens the Google Play Store on Android, the App Store with a review screen on iOS & MacOS and the Microsoft Store on Windows. Use this if you want to permanently provide a button or other call-to-action to let users leave a review as it isn't restricted by a quota.
 
 ```dart
 import 'package:in_app_review/in_app_review.dart';
@@ -52,7 +52,7 @@ final InAppReview inAppReview = InAppReview.instance;
 inAppReview.openStoreListing(appStoreId: '...', microsoftStoreId: '...');
 ```
 
-`appStoreId` is only required on IOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID.
+`appStoreId` is only required on iOS and MacOS and can be found in App Store Connect under General > App Information > Apple ID.
 
 `microsoftStoreId` is only required on Windows.
 
@@ -73,19 +73,19 @@ Real reviews cannot be created while testing `requestReview()` and the **submit*
 
 More details at https://developer.android.com/guide/playcore/in-app-review/test
 
-## IOS
-`requestReview()` can be tested via the IOS simulator or on a physical device. 
+## iOS
+`requestReview()` can be tested via the iOS simulator or on a physical device. 
 Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
 
 Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
 
-`openStoreListing()` can only be tested with a physical device as the IOS simulator does not have the App Store installed.
+`openStoreListing()` can only be tested with a physical device as the iOS simulator does not have the App Store installed.
 
 ## MacOS
 This plugin can be tested by running your MacOS application locally.
 
 # Cross Platform Compatibility
-| Function             | Android | IOS | MacOS | Windows(UWP) |
+| Function             | Android | iOS | MacOS | Windows(UWP) |
 |----------------------|---------|-----|-------|--------------|
 | `isAvailable()`      | ✅       | ✅   | ✅     | ❌            |
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
@@ -96,8 +96,8 @@ Upvote https://github.com/flutter/flutter/issues/14967 if you're interested in W
 # Requirements
 ## Android
 Requires Android 5 Lollipop(API 21) or higher and the Google Play Store must be installed.
-## IOS
-Requires IOS version 10.3
+## iOS
+Requires iOS version 10.3
 ## MacOS
 Requires MacOS version 10.14
 

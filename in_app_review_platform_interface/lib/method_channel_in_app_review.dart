@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:platform/platform.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'in_app_review_platform_interface.dart';
 
@@ -34,12 +34,12 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
     String? appStoreId,
     String? microsoftStoreId,
   }) async {
-    final bool isIOS = _platform.isIOS;
+    final bool isiOS = _platform.isIOS;
     final bool isMacOS = _platform.isMacOS;
     final bool isAndroid = _platform.isAndroid;
     final bool isWindows = _platform.isWindows;
 
-    if (isIOS || isMacOS) {
+    if (isiOS || isMacOS) {
       await _channel.invokeMethod(
         'openStoreListing',
         ArgumentError.checkNotNull(appStoreId, 'appStoreId'),
@@ -59,8 +59,7 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   }
 
   Future<void> _launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false, forceWebView: false);
-    }
+    if (!await canLaunchUrlString(url)) return;
+    await launchUrlString(url, mode: LaunchMode.externalNonBrowserApplication);
   }
 }

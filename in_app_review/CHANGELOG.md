@@ -1,3 +1,9 @@
+# [2.0.5]
+
+- Migrate Android Play Core dependency to Play Review 2.0.0.
+- Recreate the example app.
+- Update in_app_review_platform_interface to 2.0.4
+
 # [2.0.4]
 
 - Migrate maven repository from jcenter to mavenCentral
@@ -8,7 +14,7 @@
 - Fix iOS no-scene exception. ([#41](https://github.com/britannio/in_app_review/issues/41))
 # [2.0.2]
 
-- Replace IOS Swift code with Objective-C to add compatibility with Objective-C Flutter apps.
+- Replace iOS Swift code with Objective-C to add compatibility with Objective-C Flutter apps.
 
 # [2.0.1]
 
@@ -26,7 +32,7 @@
 
 - Update in_app_review_platform_interface to 1.0.5
 - Remove dependency on `package_info`.
-- Handle `openStoreListing()` with native code for Android, IOS and MacOS.
+- Handle `openStoreListing()` with native code for Android, iOS and MacOS.
 
 # [1.0.3]
 
@@ -52,7 +58,7 @@
 
 # [0.2.1+1]
 
-- Improve IOS testing docs.
+- Improve iOS testing docs.
 
 # [0.2.1]
 
