@@ -1,3 +1,6 @@
+# [2.0.6]
+- Update Android Play Core dependency to Play Review 2.0.1.
+
 # [2.0.5]
 
 - Migrate Android Play Core dependency to Play Review 2.0.0.
