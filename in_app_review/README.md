@@ -38,6 +38,8 @@ if (await inAppReview.isAvailable()) {
 
 **Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#testing) for more info.**
 
+**Make sure you are signed in to a gmail account on the play store for the rating dialog to appear.**
+
 ---
 
 ## `openStoreListing()`
