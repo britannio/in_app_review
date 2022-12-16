@@ -38,8 +38,6 @@ if (await inAppReview.isAvailable()) {
 
 **Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#testing) for more info.**
 
-**Make sure you are signed in to a gmail account on the play store for the rating dialog to appear.**
-
 ---
 
 ## `openStoreListing()`
@@ -73,6 +71,8 @@ Since there is a quota on how many times the pop up can be shown, you should **n
 You must upload your app to the Play Store to test `requestReview()`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
 
 Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
+
+**Make sure you are signed in to a gmail account on the play store for the rating dialog to appear.**
 
 More details at <https://developer.android.com/guide/playcore/in-app-review/test>
 
