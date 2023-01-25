@@ -45,7 +45,7 @@ android {
     }
     dependencies {
         // Release notes: https://developer.android.com/reference/com/google/android/play/core/release-notes-in_app_reviews
-        implementation 'com.google.android.play:review:2.0.1'
+        implementation 'com.google.android.play:review:2.0.2'
 
     }
 }
