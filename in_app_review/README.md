@@ -64,22 +64,23 @@ inAppReview.openStoreListing(appStoreId: '...', microsoftStoreId: '...');
 
 Since there is a quota on how many times the pop up can be shown, you should **not** trigger `requestReview()` via a button or other *call-to-action* option. Instead, you can reliably redirect users to your store listing via `openStoreListing()`.
 
-# Testing
+# Testing (read carefully)
 
 ## Android
 
-You must upload your app to the Play Store to test `requestReview()`. An easy way to do this is to build an apk/app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
+You must upload your app to the Play Store to test `requestReview()`. The recommended approach is to build an app bundle and upload it via [internal app sharing](https://play.google.com/apps/publish/internalappsharing/).
 
-Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
+Real reviews can only be created when `requestReview()` is used from the production track. The **submit** button is disabled on other tracks and in internal app sharing to emphasize this.
 
-More details at <https://developer.android.com/guide/playcore/in-app-review/test>
+**If you get stuck here as many developers have, please refer to the [official instructions](https://developer.android.com/guide/playcore/in-app-review/test), especially the section on [troubleshooting](https://developer.android.com/guide/playcore/in-app-review/test#troubleshooting).**
 
 ## iOS
 
 `requestReview()` can be tested via the iOS simulator or on a physical device.
-Note that `requestReview()` has no effect when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
+Note that `requestReview()` will do **nothing** when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
 
-Real reviews cannot be created while testing `requestReview()` and the **submit** button is disabled to emphasize this.
+Similarly to Android, real reviews can only created when `requestReview()` is used in production. The **submit** button is disabled when testing locally to emphasize this.
+
 
 `openStoreListing()` can only be tested with a physical device as the iOS simulator does not have the App Store installed.
 
@@ -89,13 +90,11 @@ This plugin can be tested by running your MacOS application locally.
 
 # Cross Platform Compatibility
 
-| Function             | Android | iOS | MacOS | Windows(UWP) |
+| Function             | Android | iOS | MacOS | Windows |
 |----------------------|---------|-----|-------|--------------|
 | `isAvailable()`      | ✅       | ✅   | ✅     | ❌            |
 | `requestReview()`    | ✅       | ✅   | ✅     | ❌            |
 | `openStoreListing()` | ✅       | ✅   | ✅     | ✅            |
-
-Upvote <https://github.com/flutter/flutter/issues/14967> if you're interested in Windows support!
 
 # Requirements
 
