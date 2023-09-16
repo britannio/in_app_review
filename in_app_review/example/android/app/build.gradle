@@ -32,6 +32,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
+    namespace 'dev.britannio.in_app_review_demo'
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
