@@ -44,3 +44,7 @@ flutter:
         pluginClass: InAppReviewPlugin
       macos:
         pluginClass: InAppReviewPlugin
+    
+screenshots:
+  - description: A screenshot of the iOS rating pop-up.
+    path: screenshots/ios.png
