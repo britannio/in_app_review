@@ -1,6 +1,3 @@
-# [2.0.7]
-- Adds a namespace for compatibility with AGP 8.0.
-
 # [2.0.6]
 - Update Android Play Core dependency to Play Review 2.0.1.
 
