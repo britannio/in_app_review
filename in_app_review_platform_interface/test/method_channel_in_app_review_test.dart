@@ -19,7 +19,7 @@ void main() {
     log.clear();
   });
 
-  channel.setMockMethodCallHandler((call) async {
+  Future<Object?> mockMethodCallHandler(MethodCall call) async {
     log.add(call);
 
     switch (call.method) {
@@ -32,7 +32,10 @@ void main() {
         assert(false);
         return null;
     }
-  });
+  }
+
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(channel, mockMethodCallHandler);
 
   group('isAvailable', () {
     test(
