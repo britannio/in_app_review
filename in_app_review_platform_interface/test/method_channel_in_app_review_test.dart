@@ -34,7 +34,9 @@ void main() {
     }
   }
 
-  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+  // Converts a nullable type to its non-nullable equivalent (backwards compatibility)
+  (<T>(T? o) => o!)(TestDefaultBinaryMessengerBinding.instance)
+      .defaultBinaryMessenger
       .setMockMethodCallHandler(channel, mockMethodCallHandler);
 
   group('isAvailable', () {
