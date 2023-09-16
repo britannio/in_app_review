@@ -72,7 +72,22 @@ You must upload your app to the Play Store to test `requestReview()`. The recomm
 
 Real reviews can only be created when `requestReview()` is used from the production track. The **submit** button is disabled on other tracks and in internal app sharing to emphasize this.
 
-**If you get stuck here as many developers have, please refer to the [official instructions](https://developer.android.com/guide/playcore/in-app-review/test), especially the section on [troubleshooting](https://developer.android.com/guide/playcore/in-app-review/test#troubleshooting).**
+**If you get stuck here as many developers have, please refer to the [troubleshooting table](https://developer.android.com/guide/playcore/in-app-review/test#troubleshooting) found below or the complete [official instructions](https://developer.android.com/guide/playcore/in-app-review/test).**
+
+<details>
+<summary>Troubleshooting table</summary>
+  
+| Issue | Solution |
+|-------|----------|
+| Your app is not published yet in the Play Store.	                                    | Your app doesn't have to be published to test, but your app's **applicationID** must be available at least in the internal testing track.
+| The user account can't review the app.	                                            | Your app must be in the user's Google Play library. To add your app to the user's library, download your app from the Play Store using that user's account.
+| The primary account is not selected in the Play Store.	                            | When multiple accounts are available in the device, ensure that the primary account is the one selected in the Play Store.
+| The user account is protected (for example, with enterprise accounts).	            | Use a Gmail account instead.
+| The user has already reviewed the app.                                                | Delete the review directly from Play Store.
+| The quota has been reached.	                                                        | Use an [internal test track](https://developer.android.com/guide/playcore/in-app-review/test#internal-test-track) or [internal app sharing](https://developer.android.com/guide/playcore/in-app-review/test#internal-app-sharing).
+| There is an issue with the Google Play Store or Google Play Services on the device.   | This commonly occurs when the Play Store was sideloaded onto the device. Use a different device that has a valid version of the Play Store and Google Play Services.
+  
+</details>
 
 ## iOS
 
