@@ -1,3 +1,9 @@
+# [2.0.8]
+
+- Bump Kotlin version to 1.7.10
+- Bump build gradle version to 7.3.0
+- Bump compileSdkVersion to 33
+
 # [2.0.7]
 
 - Adds a namespace for compatibility with AGP 8.0.
