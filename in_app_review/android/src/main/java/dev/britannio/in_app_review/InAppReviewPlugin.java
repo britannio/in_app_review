@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
@@ -99,22 +101,22 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
             return;
         }
 
-        final boolean playStoreInstalled = isPlayStoreInstalled();
+        final boolean playStoreAndPlayServicesAvailable = isPlayStoreAndPlayServicesAvailable();
         final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
-        Log.i(TAG, "isAvailable: playStoreInstalled: " + playStoreInstalled);
+        Log.i(TAG, "isAvailable: playStoreAndPlayServicesAvailable: " + playStoreAndPlayServicesAvailable);
         Log.i(TAG, "isAvailable: lollipopOrLater: " + lollipopOrLater);
 
-        if (!(playStoreInstalled && lollipopOrLater)) {
+        if (!(playStoreAndPlayServicesAvailable && lollipopOrLater)) {
             // The play store isn't installed or the device isn't running Android 5 Lollipop(API 21) or
             // higher
-            Log.w(TAG, "isAvailable: The Play Store must be installed and Android 5 or later must be used");
+            Log.w(TAG, "isAvailable: The Play Store must be installed, Play Services must be available and Android 5 or later must be used");
             result.success(false);
         } else {
             // The API is likely available but we can ensure that it is by getting a ReviewInfo object
             // from the API. This will also speed up the review flow when we're ready to launch it as
             // the ReviewInfo doesn't need to be fetched.
-            Log.i(TAG, "isAvailable: The Play Store is available and Android 5 or later is being used");
+            Log.i(TAG, "isAvailable: Play Store, Play Services and Android version requirements met");
             cacheReviewInfo(result);
         }
     }
@@ -178,13 +180,21 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         flow.addOnCompleteListener(task -> result.success(null));
     }
 
-    private boolean isPlayStoreInstalled() {
+    private boolean isPlayStoreAndPlayServicesAvailable() {
         try {
             context.getPackageManager().getPackageInfo("com.android.vending", 0);
-            return true;
         } catch (PackageManager.NameNotFoundException e) {
+            Log.i(TAG, "Play Store not installed.");
             return false;
         }
+
+        GoogleApiAvailability availability = GoogleApiAvailability.getInstance();
+        if (availability.isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS) {
+            Log.i(TAG, "Google Play Services not available");
+            return false;
+        }
+
+        return true;
     }
 
 
