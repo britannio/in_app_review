@@ -1,8 +1,8 @@
 # in_app_review
 
 ![tests](https://github.com/britannio/in_app_review/workflows/tests/badge.svg?branch=master)
-[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) ![In-App Review Android Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/android.jpg)
-![In-App Review iOS Demo](https://github.com/britannio/in_app_review/blob/master/in_app_review/screenshots/ios.png)
+[![pub package](https://img.shields.io/pub/v/in_app_review.svg)](https://pub.dartlang.org/packages/in_app_review) ![In-App Review Android Demo](https://raw.githubusercontent.com/britannio/in_app_review/master/in_app_review/screenshots/android.jpg)
+![In-App Review iOS Demo](https://raw.githubusercontent.com/britannio/in_app_review/master/in_app_review/screenshots/ios.png)
 
 # Description
 
