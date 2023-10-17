@@ -1,3 +1,6 @@
+# [2.0.5]
+- Update tests to be compatible with the latest version of flutter.
+
 # [2.0.4]
 
 - Update usage of `pkg:url_launcher` to address deprecations.
