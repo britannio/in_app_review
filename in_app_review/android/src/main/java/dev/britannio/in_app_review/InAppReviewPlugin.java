@@ -101,7 +101,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
             return;
         }
 
-        final boolean playStoreAndPlayServicesAvailable = isPlayStoreAndPlayServicesAvailable();
+        final boolean playStoreAndPlayServicesAvailable = isPlayStoreInstalled() && isPlayServicesAvailable();
         final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
         Log.i(TAG, "isAvailable: playStoreAndPlayServicesAvailable: " + playStoreAndPlayServicesAvailable);
@@ -180,14 +180,23 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         flow.addOnCompleteListener(task -> result.success(null));
     }
 
-    private boolean isPlayStoreAndPlayServicesAvailable() {
+    @SuppressWarnings("deprecation")
+    private boolean isPlayStoreInstalled() {
         try {
-            context.getPackageManager().getPackageInfo("com.android.vending", 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                context.getPackageManager().getPackageInfo("com.android.vending",  PackageManager.PackageInfoFlags.of(0));
+            } else {
+                context.getPackageManager().getPackageInfo("com.android.vending", 0);
+            }
         } catch (PackageManager.NameNotFoundException e) {
             Log.i(TAG, "Play Store not installed.");
             return false;
         }
 
+        return true;
+    }
+
+    private boolean isPlayServicesAvailable() {
         GoogleApiAvailability availability = GoogleApiAvailability.getInstance();
         if (availability.isGooglePlayServicesAvailable(context) != ConnectionResult.SUCCESS) {
             Log.i(TAG, "Google Play Services not available");
