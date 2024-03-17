@@ -1,3 +1,7 @@
+# [2.0.9]
+
+- Fix deprecated API warning on Android.
+
 # [2.0.8]
 
 - Bump Kotlin version to 1.7.10
