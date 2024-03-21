@@ -92,7 +92,7 @@ Real reviews can only be created when `requestReview()` is used from the product
 ## iOS
 
 `requestReview()` can be tested via the iOS simulator or on a physical device.
-Note that `requestReview()` will do **nothing** when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview#discussion).
+Note that `requestReview()` will do **nothing** when testing via TestFlight [as documented](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/3566727-requestreview#4278434).
 
 Similarly to Android, real reviews can only created when `requestReview()` is used in production. The **submit** button is disabled when testing locally to emphasize this.
 
