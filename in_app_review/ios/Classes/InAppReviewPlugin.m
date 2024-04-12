@@ -30,7 +30,7 @@
 - (void) requestReview:(FlutterResult)result {
     if (@available(iOS 14, *)) {
         [self logMessage:@"iOS 14+"];
-        UIWindowScene *scene = [self findActiveScene];
+        UIWindowScene *scene = [self findScene];
         [SKStoreReviewController requestReviewInScene:scene];
         result(nil);
     } else if (@available(iOS 10.3, *)) {
@@ -44,7 +44,7 @@
     }
 }
 
-- (UIWindowScene *) findActiveScene  API_AVAILABLE(ios(13.0)){
+- (UIWindowScene *) findScene  API_AVAILABLE(ios(13.0)){
     for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) {
         
         if (scene.activationState == UISceneActivationStateForegroundActive) {
@@ -52,7 +52,12 @@
         }
         
     }
-    
+
+    // If no active scene is found but a scene is connected, return the first connected scene
+    for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) {
+        return scene;
+    }
+
     return nil;
 }
 
