@@ -36,7 +36,7 @@ if (await inAppReview.isAvailable()) {
 - Triggering this via a button in your app as it will only work when the quota enforced by the underlying API has not been exceeded. ([Android](https://developer.android.com/guide/playcore/in-app-review#quotas))
 - Interrupting the user if they are mid way through a task.
 
-**Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#testing) for more info.**
+**Testing `requestReview()` on Android isn't as simple as running your app via the emulator or a physical device. See [Testing](#testing-read-carefully) for more info.**
 
 ---
 
