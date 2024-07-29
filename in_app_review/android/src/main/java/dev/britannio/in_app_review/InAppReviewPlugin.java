@@ -17,6 +17,10 @@ import com.google.android.play.core.review.ReviewInfo;
 import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -101,6 +105,10 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
             return;
         }
 
+        if (!appInstalledBySupportedStore()) {
+            invalidStoreWarning();
+        }
+
         final boolean playStoreAndPlayServicesAvailable = isPlayStoreInstalled() && isPlayServicesAvailable();
         final boolean lollipopOrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
@@ -149,6 +157,10 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         Log.i(TAG, "requestReview: called");
         if (noContextOrActivity(result)) return;
 
+        if (!appInstalledBySupportedStore()) {
+            invalidStoreWarning();
+        }
+
         final ReviewManager manager = ReviewManagerFactory.create(context);
 
         if (reviewInfo != null) {
@@ -184,7 +196,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
     private boolean isPlayStoreInstalled() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                context.getPackageManager().getPackageInfo("com.android.vending",  PackageManager.PackageInfoFlags.of(0));
+                context.getPackageManager().getPackageInfo("com.android.vending", PackageManager.PackageInfoFlags.of(0));
             } else {
                 context.getPackageManager().getPackageInfo("com.android.vending", 0);
             }
@@ -204,6 +216,17 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         }
 
         return true;
+    }
+
+    private boolean appInstalledBySupportedStore() {
+        final List<String> validInstallers = new ArrayList<>(Arrays.asList("com.android.vending"));
+        final String installer = context.getPackageManager().getInstallerPackageName(context.getPackageName());
+        Log.i(TAG, "appInstalledBySupportedStore: installer: " + installer);
+        return installer != null && validInstallers.contains(installer);
+    }
+
+    private void invalidStoreWarning() {
+        Log.w(TAG, "The app should be installed by the Play Store to test in_app_review. See https://pub.dev/packages/in_app_review#testing-read-carefully for more information.");
     }
 
 
