@@ -6,8 +6,8 @@ repository: https://github.com/britannio/in_app_review
 issue_tracker: https://github.com/britannio/in_app_review/issues
 
 environment:
-  sdk: '>=2.12.0 <4.0.0'
-  flutter: ">=2.0.0"
+  sdk: '>=3.5.2 <4.0.0'
+  flutter: ">=3.24.2"
 
 dependencies:
   flutter:
@@ -18,8 +18,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.0
-  plugin_platform_interface: ^2.0.0
+  mockito: ^5.4.4
+  plugin_platform_interface: ^2.1.8
 
 
 # For information on the generic Dart part of this file, see the
