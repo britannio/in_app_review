@@ -6,8 +6,8 @@ version: 2.0.5
 homepage: https://github.com/britannio/in_app_review/tree/master/in_app_review_platform_interface
 
 environment:
-  sdk: '>=3.5.2 <4.0.0'
-  flutter: ">=3.24.2"
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=3.19.0"
 
 dependencies:
   flutter:
