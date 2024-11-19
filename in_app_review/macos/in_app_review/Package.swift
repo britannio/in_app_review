@@ -21,7 +21,7 @@ let package = Package(
                 // data, update the PrivacyInfo.xcprivacy file to describe your plugin's
                 // privacy impact, and then uncomment these lines. For more information, see
                 // https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-                // .process("PrivacyInfo.xcprivacy"),
+                .process("PrivacyInfo.xcprivacy"),
 
                 // If you have other resources that need to be bundled with your plugin, refer to
                 // the following instructions to add them:
