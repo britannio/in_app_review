@@ -13,7 +13,7 @@ Flutter plugin for showing the In-App Review/System Rating pop up.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Britannio Jarrett' => 'britanniojarrett@gmail.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'in_app_review/Sources/in_app_review/**/*'
+  s.source_files = 'in_app_review/Sources/in_app_review/**/*.{swift,h,hpp,m,mm,c,cpp}'
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'
 
