@@ -13,7 +13,7 @@ Flutter plugin for showing the In-App Review/System Rating pop up.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Britannio Jarrett' => 'britanniojarrett@gmail.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'in_app_review/Sources/in_app_review/**/*.{swift,h,hpp,m,mm,c,cpp}'
+  s.source_files = 'in_app_review/Sources/in_app_review/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '12.0'
 
@@ -25,5 +25,5 @@ Flutter plugin for showing the In-App Review/System Rating pop up.
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
   # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  s.resource_bundles = {'in_app_review_privacy' => ['in_app_review/Sources/in_app_review/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'in_app_review_privacy' => ['in_app_review/Resources/in_app_review/PrivacyInfo.xcprivacy']}
 end
