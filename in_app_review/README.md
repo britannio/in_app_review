@@ -8,7 +8,8 @@
 
 A Flutter plugin that lets you show a review pop up where users can leave a review for your app without needing to close your app. Alternatively, you can open your store listing via a deep link.
 
-It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on iOS/MacOS.
+It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and [requestReview](https://developer.apple.com/documentation/storekit/appstore/requestreview(in:)-1q8qs) on iOS/MacOS.
+
 
 # Usage
 
@@ -76,7 +77,6 @@ Real reviews can only be created when `requestReview()` is used from the product
 
 <details>
 <summary>Troubleshooting table</summary>
-  
 | Issue | Solution |
 |-------|----------|
 | Your app is not published yet in the Play Store.	                                    | Your app doesn't have to be published to test, but your app's **applicationID** must be available at least in the internal testing track.
@@ -86,7 +86,6 @@ Real reviews can only be created when `requestReview()` is used from the product
 | The user has already reviewed the app.                                                | Delete the review directly from Play Store.
 | The quota has been reached.	                                                        | Use an [internal test track](https://developer.android.com/guide/playcore/in-app-review/test#internal-test-track) or [internal app sharing](https://developer.android.com/guide/playcore/in-app-review/test#internal-app-sharing).
 | There is an issue with the Google Play Store or Google Play Services on the device.   | This commonly occurs when the Play Store was sideloaded onto the device. Use a different device that has a valid version of the Play Store and Google Play Services.
-  
 </details>
 
 ## iOS
