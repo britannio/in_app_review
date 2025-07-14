@@ -18,7 +18,6 @@ import com.google.android.play.core.review.ReviewManager;
 import com.google.android.play.core.review.ReviewManagerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
@@ -105,7 +104,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
             return;
         }
 
-        if (!appInstalledBySupportedStore()) {
+        if (appInstalledByUnsupportedStore()) {
             invalidStoreWarning();
         }
 
@@ -157,7 +156,7 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         Log.i(TAG, "requestReview: called");
         if (noContextOrActivity(result)) return;
 
-        if (!appInstalledBySupportedStore()) {
+        if (appInstalledByUnsupportedStore()) {
             invalidStoreWarning();
         }
 
@@ -192,7 +191,6 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         flow.addOnCompleteListener(task -> result.success(null));
     }
 
-    @SuppressWarnings("deprecation")
     private boolean isPlayStoreInstalled() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -218,12 +216,13 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
         return true;
     }
 
-    private boolean appInstalledBySupportedStore() {
-        final List<String> validInstallers = new ArrayList<>(Arrays.asList("com.android.vending"));
+    private boolean appInstalledByUnsupportedStore() {
+        final List<String> validInstallers = new ArrayList<>(List.of("com.android.vending"));
         final String installer = context.getPackageManager().getInstallerPackageName(context.getPackageName());
-        Log.i(TAG, "appInstalledBySupportedStore: installer: " + installer);
-        return installer != null && validInstallers.contains(installer);
+        Log.i(TAG, "appInstalledByUnsupportedStore: installer: " + installer);
+        return installer == null || !validInstallers.contains(installer);
     }
+
 
     private void invalidStoreWarning() {
         Log.w(TAG, "The app should be installed by the Play Store to test in_app_review. See https://pub.dev/packages/in_app_review#testing-read-carefully for more information.");

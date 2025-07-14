@@ -2,14 +2,14 @@ group 'dev.britannio.in_app_review'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = '2.2.0'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.11.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -30,15 +30,11 @@ android {
       namespace 'dev.britannio.in_app_review'
     }
 
-    compileSdkVersion 33
+    compileSdkVersion 36
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 
     sourceSets {
@@ -52,7 +48,7 @@ android {
         // Release notes: https://developer.android.com/reference/com/google/android/play/core/release-notes-in_app_reviews
         implementation 'com.google.android.play:review:2.0.2'
         // Release notes: https://developers.google.com/android/guides/releases
-        implementation 'com.google.android.gms:play-services-base:18.2.0'
+        implementation 'com.google.android.gms:play-services-base:18.7.2'
 
 
     }
