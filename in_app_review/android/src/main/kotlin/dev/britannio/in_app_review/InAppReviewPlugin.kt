@@ -3,6 +3,7 @@ package dev.britannio.in_app_review
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -114,10 +115,8 @@ class InAppReviewPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     Log.i(TAG, "openStoreListing: called")
     if (noContextOrActivity(result)) return
     val packageName = context!!.packageName
-    val intent = Intent(
-      Intent.ACTION_VIEW,
-        "https://play.google.com/store/apps/details?id=$packageName".toUri()
-    )
+    val intent = Intent(Intent.ACTION_VIEW)
+      .setData("https://play.google.com/store/apps/details?id=$packageName".toUri())
     activity!!.startActivity(intent)
     result.success(null)
   }
