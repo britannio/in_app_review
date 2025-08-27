@@ -1,3 +1,7 @@
+# [2.0.11]
+
+- Regenerate the plugin & migrate Android platform code from Java to Kotlin
+
 # [2.0.10]
 
 - Add a privacy manifest to iOS and MacOS.

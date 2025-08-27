@@ -25,6 +25,7 @@ class InAppReviewExampleAppState extends State<InAppReviewExampleApp> {
   void initState() {
     super.initState();
 
+    // (<T>(T? o) => o!) ensures that the following expression is not null for backwards compatibility.
     (<T>(T? o) => o!)(WidgetsBinding.instance).addPostFrameCallback((_) async {
       try {
         final isAvailable = await _inAppReview.isAvailable();
