@@ -11,7 +11,7 @@ Flutter plugin for showing the In-App Review/System Rating pop up.
                        DESC
   s.homepage         = 'https://pub.dev/packages/in_app_review'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Britannio Jarrett' => 'britanniojarrett@gmail.com' }
+  s.author           = { 'Britannio Jarrett' => 'oss@britannio.dev' }
 
   s.source           = { :path => '.' }
   s.source_files = 'in_app_review/Sources/in_app_review/**/*'
