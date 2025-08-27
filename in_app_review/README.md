@@ -77,7 +77,7 @@ Real reviews can only be created when `requestReview()` is used from the product
 
 <details>
 <summary>Troubleshooting table</summary>
-
+  
 | Issue | Solution |
 |-------|----------|
 | Your app is not published yet in the Play Store.	                                    | Your app doesn't have to be published to test, but your app's **applicationID** must be available at least in the internal testing track.
@@ -87,7 +87,7 @@ Real reviews can only be created when `requestReview()` is used from the product
 | The user has already reviewed the app.                                                | Delete the review directly from Play Store.
 | The quota has been reached.	                                                        | Use an [internal test track](https://developer.android.com/guide/playcore/in-app-review/test#internal-test-track) or [internal app sharing](https://developer.android.com/guide/playcore/in-app-review/test#internal-app-sharing).
 | There is an issue with the Google Play Store or Google Play Services on the device.   | This commonly occurs when the Play Store was sideloaded onto the device. Use a different device that has a valid version of the Play Store and Google Play Services.
-
+  
 </details>
 
 ## iOS
