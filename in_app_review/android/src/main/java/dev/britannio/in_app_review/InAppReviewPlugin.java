@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.InstallSourceInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
@@ -220,7 +221,24 @@ public class InAppReviewPlugin implements FlutterPlugin, MethodCallHandler, Acti
 
     private boolean appInstalledBySupportedStore() {
         final List<String> validInstallers = new ArrayList<>(Arrays.asList("com.android.vending"));
-        final String installer = context.getPackageManager().getInstallerPackageName(context.getPackageName());
+        final PackageManager pm = context.getPackageManager();
+        final String pkg = context.getPackageName();
+        String installer = null;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // API 30+
+            try {
+                InstallSourceInfo info = pm.getInstallSourceInfo(pkg);
+                if (info != null) {
+                    installer = info.getInstallingPackageName();
+                    if (installer == null) installer = info.getInitiatingPackageName();
+                }
+            } catch (PackageManager.NameNotFoundException ignored) { }
+        } else {
+            @SuppressWarnings("deprecation")
+            String legacy = pm.getInstallerPackageName(pkg);
+            installer = legacy;
+        }
+
         Log.i(TAG, "appInstalledBySupportedStore: installer: " + installer);
         return installer != null && validInstallers.contains(installer);
     }
