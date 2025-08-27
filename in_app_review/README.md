@@ -8,7 +8,8 @@
 
 A Flutter plugin that lets you show a review pop up where users can leave a review for your app without needing to close your app. Alternatively, you can open your store listing via a deep link.
 
-It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and the [SKStoreReviewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller) on iOS/MacOS.
+It uses the [In-App Review](https://developer.android.com/guide/playcore/in-app-review) API on Android and [requestReview](https://developer.apple.com/documentation/storekit/appstore/requestreview(in:)-1q8qs) on iOS/MacOS.
+
 
 # Usage
 
