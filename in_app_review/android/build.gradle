@@ -52,7 +52,6 @@ android {
         testImplementation("org.mockito:mockito-core:5.0.0")
         // Release notes: https://developer.android.com/reference/com/google/android/play/core/release-notes-in_app_reviews
         implementation 'com.google.android.play:review:2.0.2'
-        implementation 'com.google.android.play:review-ktx:2.0.2'
         // Release notes: https://developers.google.com/android/guides/releases
         implementation 'com.google.android.gms:play-services-base:18.7.2'
     }
