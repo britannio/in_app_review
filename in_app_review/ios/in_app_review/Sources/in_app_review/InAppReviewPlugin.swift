@@ -24,26 +24,50 @@ public class InAppReviewPlugin: NSObject, FlutterPlugin {
             result(FlutterMethodNotImplemented)
         }
     }
+
+    @available(iOS 13.0, *)
+    private func currentWindowScene() -> UIWindowScene? {
+        let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+        if let activeScene = scenes.first(where: { $0.activationState == .foregroundActive }) {
+            return activeScene
+        }
+
+        return scenes.first
+    }
     
     private func requestReview(_ result: @escaping FlutterResult) {
         if #available(iOS 16.0, *) {
             log("iOS 16+")
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                DispatchQueue.main.async {
-                    AppStore.requestReview(in: scene)
-                }
+            guard let scene = currentWindowScene() else {
+                result(FlutterError(code: "no-active-scene",
+                                  message: "Could not find an active UIWindowScene",
+                                  details: nil))
+                return
             }
-            result(nil)
+
+            DispatchQueue.main.async {
+                AppStore.requestReview(in: scene)
+                result(nil)
+            }
         } else if #available(iOS 14.0, *) {
             log("iOS 14+")
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                SKStoreReviewController.requestReview(in: scene)
+            guard let scene = currentWindowScene() else {
+                result(FlutterError(code: "no-active-scene",
+                                  message: "Could not find an active UIWindowScene",
+                                  details: nil))
+                return
             }
-            result(nil)
+
+            DispatchQueue.main.async {
+                SKStoreReviewController.requestReview(in: scene)
+                result(nil)
+            }
         } else if #available(iOS 10.3, *) {
             log("iOS 10.3+")
-            SKStoreReviewController.requestReview()
-            result(nil)
+            DispatchQueue.main.async {
+                SKStoreReviewController.requestReview()
+                result(nil)
+            }
         } else {
             result(FlutterError(code: "unavailable",
                               message: "In-App Review unavailable",
@@ -63,7 +87,7 @@ public class InAppReviewPlugin: NSObject, FlutterPlugin {
     }
     
     private func openStoreListing(storeId: String?, result: @escaping FlutterResult) {
-        guard let storeId = storeId else {
+        guard let storeId = storeId, !storeId.isEmpty else {
             result(FlutterError(code: "no-store-id",
                               message: "Your store id must be passed as the method channel's argument",
                               details: nil))
@@ -79,11 +103,21 @@ public class InAppReviewPlugin: NSObject, FlutterPlugin {
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:]) { success in
+                if success {
+                    result(nil)
+                } else {
+                    result(FlutterError(code: "open-store-fail",
+                                      message: "Failed to open App Store listing",
+                                      details: nil))
+                }
+            }
+            return
         }
-        result(nil)
+
+        result(FlutterError(code: "unsupported-ios-version",
+                          message: "Unsupported iOS version",
+                          details: nil))
     }
     
     private func log(_ message: String, details: String? = nil) {
