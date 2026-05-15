@@ -25,5 +25,5 @@ Flutter plugin for showing the In-App Review/System Rating pop up.
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
   # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  s.resource_bundles = {'in_app_review_privacy' => ['in_app_review/Sources/in_app_review/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'in_app_review_privacy' => ['in_app_review/Resources/PrivacyInfo.xcprivacy']}
 end
