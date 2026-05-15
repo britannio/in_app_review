@@ -12,7 +12,7 @@ class InAppReview {
   /// On Android the Google Play Store must be installed and the device must be
   /// running **Android 5 Lollipop(API 21)** or higher.
   ///
-  /// iOS devices must be running **iOS version 10.3** or higher.
+  /// iOS devices must be running **iOS version 12.0** or higher.
   ///
   /// MacOS devices must be running **MacOS version 10.14** or higher
   Future<bool> isAvailable() => InAppReviewPlatform.instance.isAvailable();

@@ -3,7 +3,6 @@ package dev.britannio.in_app_review
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
@@ -50,6 +49,7 @@ class InAppReviewPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
         context = null
+        activity = null
     }
 
     // ActivityAware overrides
@@ -71,12 +71,14 @@ class InAppReviewPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun isAvailable(result: Result) {
         Log.i(TAG, "isAvailable: called")
-        if (noContextOrActivity()) {
+        val currentContext = context
+        if (currentContext == null) {
+            Log.e(TAG, "isAvailable: Android context not available")
             result.success(false)
             return
         }
         try {
-            val manager = ReviewManagerFactory.create(context!!)
+            val manager = ReviewManagerFactory.create(currentContext)
             val request = manager.requestReviewFlow()
             request.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -94,20 +96,37 @@ class InAppReviewPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun requestReview(result: Result) {
         Log.i(TAG, "requestReview: called")
-        if (noContextOrActivity(result)) return
+        val currentContext = context
+        if (currentContext == null) {
+            result.error("error", "Android context not available", null)
+            return
+        }
+
+        val currentActivity = activity
+        if (currentActivity == null) {
+            result.error("error", "Android activity not available", null)
+            return
+        }
 
         try {
-            val manager = ReviewManagerFactory.create(context!!)
+            val manager = ReviewManagerFactory.create(currentContext)
             val request = manager.requestReviewFlow()
             request.addOnCompleteListener { task ->
-                if (noContextOrActivity(result)) return@addOnCompleteListener
                 if (task.isSuccessful) {
                     Log.i(TAG, "onComplete: Successfully requested review flow")
                     val info = task.result
-                    val flow = manager.launchReviewFlow(activity!!, info)
-                    flow.addOnCompleteListener {
+                    val flow = manager.launchReviewFlow(currentActivity, info)
+                    flow.addOnCompleteListener { flowTask ->
                         // The API does not indicate whether the user reviewed or if the dialog was shown.
-                        result.success(null)
+                        if (flowTask.isSuccessful) {
+                            result.success(null)
+                        } else {
+                            result.error(
+                                "error",
+                                "Failed to launch in-app review flow",
+                                null
+                            )
+                        }
                     }
                 } else {
                     Log.w(TAG, "onComplete: Unsuccessfully requested review flow")
@@ -130,12 +149,32 @@ class InAppReviewPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     private fun openStoreListing(result: Result) {
         Log.i(TAG, "openStoreListing: called")
-        if (noContextOrActivity(result)) return
+        val currentContext = context
+        if (currentContext == null) {
+            result.error("error", "Android context not available", null)
+            return
+        }
+
+        val currentActivity = activity
+        if (currentActivity == null) {
+            result.error("error", "Android activity not available", null)
+            return
+        }
+
         try {
-            val packageName = context!!.packageName
-            val intent = Intent(Intent.ACTION_VIEW)
-                .setData("https://play.google.com/store/apps/details?id=$packageName".toUri())
-            activity!!.startActivity(intent)
+            val packageName = currentContext.packageName
+            val marketIntent = Intent(Intent.ACTION_VIEW)
+                .setData("market://details?id=$packageName".toUri())
+                .setPackage("com.android.vending")
+
+            val playStoreIntent = if (marketIntent.resolveActivity(currentContext.packageManager) != null) {
+                marketIntent
+            } else {
+                Intent(Intent.ACTION_VIEW)
+                    .setData("https://play.google.com/store/apps/details?id=$packageName".toUri())
+            }
+
+            currentActivity.startActivity(playStoreIntent)
             result.success(null)
         } catch (e: Exception) {
             Log.e(TAG, "openStoreListing: error", e)
@@ -145,26 +184,6 @@ class InAppReviewPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 null
             )
         }
-    }
-
-    private fun noContextOrActivity(result: Result? = null): Boolean {
-        Log.i(TAG, "noContextOrActivity: called")
-
-        if (context == null) {
-            val msg = "Android context not available"
-            Log.e(TAG, "noContextOrActivity: $msg")
-            result?.error("error", msg, null)
-            return true
-        }
-
-        if (activity == null) {
-            val msg = "Android activity not available"
-            Log.e(TAG, "noContextOrActivity: $msg")
-            result?.error("error", msg, null)
-            return true
-        }
-
-        return false
     }
 
 }

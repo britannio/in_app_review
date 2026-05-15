@@ -120,7 +120,7 @@ Requires Android 5 Lollipop(API 21) or higher and the Google Play Store must be 
 
 ## iOS
 
-Requires iOS version 10.3
+Requires iOS version 12.0
 
 ## MacOS
 

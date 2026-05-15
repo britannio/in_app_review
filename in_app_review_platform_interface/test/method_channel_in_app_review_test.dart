@@ -51,6 +51,30 @@ void main() {
         expect(result, isTrue);
       },
     );
+
+    test(
+      'should return false when method channel throws',
+      () async {
+        // ARRANGE
+        (<T>(T? o) => o!)(TestDefaultBinaryMessengerBinding.instance)
+            .defaultBinaryMessenger
+            .setMockMethodCallHandler(
+              channel,
+              (MethodCall call) async => throw PlatformException(code: 'error'),
+            );
+
+        // ACT
+        final result = await methodChannelInAppReview.isAvailable();
+
+        // ASSERT
+        expect(result, isFalse);
+
+        // RESET
+        (<T>(T? o) => o!)(TestDefaultBinaryMessengerBinding.instance)
+            .defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, mockMethodCallHandler);
+      },
+    );
   });
 
   group('requestReview', () {
@@ -100,6 +124,22 @@ void main() {
             <Matcher>[isMethodCall('openStoreListing', arguments: appStoreId)]);
       },
     );
+
+    test(
+      'should throw when appStoreId is missing on iOS',
+      () async {
+        // ARRANGE
+        methodChannelInAppReview.platform =
+            FakePlatform(operatingSystem: 'ios');
+
+        // ACT + ASSERT
+        expect(
+          methodChannelInAppReview.openStoreListing(),
+          throwsA(isA<ArgumentError>()),
+        );
+      },
+    );
+
     test(
       'should invoke the openStoreListing method channel on MacOS',
       () async {
@@ -116,6 +156,22 @@ void main() {
             <Matcher>[isMethodCall('openStoreListing', arguments: appStoreId)]);
       },
     );
+
+    test(
+      'should throw when appStoreId is missing on MacOS',
+      () async {
+        // ARRANGE
+        methodChannelInAppReview.platform =
+            FakePlatform(operatingSystem: 'macos');
+
+        // ACT + ASSERT
+        expect(
+          methodChannelInAppReview.openStoreListing(),
+          throwsA(isA<ArgumentError>()),
+        );
+      },
+    );
+
     test(
       'should invoke the openStoreListing method channel on Windows',
       () async {
@@ -136,6 +192,36 @@ void main() {
       },
       skip:
           'The windows uwp implementation still uses the url_launcher package',
+    );
+
+    test(
+      'should throw when microsoftStoreId is missing on Windows',
+      () async {
+        // ARRANGE
+        methodChannelInAppReview.platform =
+            FakePlatform(operatingSystem: 'windows');
+
+        // ACT + ASSERT
+        expect(
+          methodChannelInAppReview.openStoreListing(),
+          throwsA(isA<ArgumentError>()),
+        );
+      },
+    );
+
+    test(
+      'should throw UnsupportedError on unsupported platform',
+      () async {
+        // ARRANGE
+        methodChannelInAppReview.platform =
+            FakePlatform(operatingSystem: 'linux');
+
+        // ACT + ASSERT
+        expect(
+          methodChannelInAppReview.openStoreListing(),
+          throwsA(isA<UnsupportedError>()),
+        );
+      },
     );
   });
 }
