@@ -1,3 +1,8 @@
+# [2.0.13]
+
+- Updates minimum supported SDK version to Flutter 3.44/Dart 3.12.
+- Migrates Android plugin and example Gradle config to built-in Kotlin compatible setup.
+
 # [2.0.12]
 
 - Fix an Android NullPointerException that sometimes occurred when apps were backgrounded.
