@@ -27,7 +27,7 @@ apply plugin: "kotlin-android"
 android {
     namespace = "dev.britannio.in_app_review"
 
-    compileSdk = 35
+    compileSdkVersion 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
