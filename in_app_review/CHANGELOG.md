@@ -1,3 +1,7 @@
+# [2.0.13]
+
+- Migrates to built-in Kotlin to support AGP 9.
+
 # [2.0.12]
 
 - Fix an Android NullPointerException that sometimes occurred when apps were backgrounded.
