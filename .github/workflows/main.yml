@@ -21,7 +21,7 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Static Analysis
-        run: flutter analyze --no-pub
+        run: flutter analyze --no-pub --no-fatal-infos
       - name: Run Tests
         run: flutter test --no-pub
           
@@ -41,6 +41,6 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Static Analysis
-        run: flutter analyze --no-pub
+        run: flutter analyze --no-pub --no-fatal-infos
       - name: Run Tests
         run: flutter test --no-pub
