@@ -8,7 +8,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        flutter-version: ["3.24.5", "stable"]
+        flutter-version: ["3.47.0", "stable"]
     runs-on: ubuntu-latest
     defaults:
       run:
