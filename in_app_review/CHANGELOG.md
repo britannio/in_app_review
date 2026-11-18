@@ -1,3 +1,8 @@
+## 2.0.13
+
+- Migrate the Android plugin to built-in Kotlin.
+- Require Flutter 3.44.0 and Dart 3.12.0 or later.
+
 # [2.0.12]
 
 - Fix an Android NullPointerException that sometimes occurred when apps were backgrounded.
